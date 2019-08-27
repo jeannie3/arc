@@ -1,6 +1,12 @@
 # Arc
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.0.
+## To download dependencies 
+
+Run `npm install` to download the dependencies necessary to run this app. You will only need to do this once unless the dependencies have been updated.
+
+## Run Electron Desktop App
+
+Run `npm run electron` to build the project and launch the Electron Desktop App.
 
 ## Development server
 
