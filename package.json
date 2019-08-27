@@ -1,10 +1,10 @@
 {
   "name": "arc",
   "version": "0.0.0",
-  "main":"main.js",
+  "main": "main.js",
   "scripts": {
     "ng": "ng",
-    "electron": "ng build --base-href ./ && electron .",
+    "electron": "ng build --base-href ./ && electron .  --disable-gpu",
     "electron-tsc": "tsc main.ts && ng build --base-href ./ && electron .",
     "start": "ng serve",
     "build": "ng build",
