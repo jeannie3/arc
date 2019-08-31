@@ -1,0 +1,18 @@
+<div class="container" [formGroup]="formGroup">
+  <div mat-dialog-title>
+    <mat-form-field class="full-width">
+      <mat-label>Title</mat-label>
+      <input formControlName="title" class="full-width" matInput>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-content>
+    <mat-form-field class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea formControlName="description" matInput></textarea>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions class="bottom-row">
+    <button mat-stroked-button color="primary" (click)="onCancel()">Cancel</button>
+    <button mat-flat-button color="primary" (click)="onSave()">Save</button>
+  </div>
+</div>
