@@ -1,0 +1,3 @@
+<app-scenario-scene-context [scene]="currentScene"></app-scenario-scene-context>
+
+<app-scene-answer-choice-list [answerChoices]="currentScene.answerChoices" (answered)="onAnswered($event)"></app-scene-answer-choice-list>

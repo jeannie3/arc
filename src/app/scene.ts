@@ -1,6 +1,6 @@
 import { AnswerChoice } from './answer-choice';
 
-enum SceneType {
+export enum SceneType {
   Dialog,
   Scene
 }
