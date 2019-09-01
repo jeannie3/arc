@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
-import { Scenario, mockScenarios } from './scenario';
+import { FormBuilder } from '@angular/forms';
 import * as _ from 'lodash';
 
 @Component({
@@ -9,7 +8,6 @@ import * as _ from 'lodash';
   styleUrls: ['./scenario-list-view.component.scss']
 })
 export class ScenarioListViewComponent implements OnInit {
-  scenarios: Scenario[] = mockScenarios;
   formScenario = this.formBuilder.group({
     id: [_.uniqueId("SNR")],
     title: ["new default title"],
