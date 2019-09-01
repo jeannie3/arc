@@ -10,6 +10,14 @@
       <mat-label>Description</mat-label>
       <textarea formControlName="description" matInput></textarea>
     </mat-form-field>
+    <div class="scenes row">
+      <h2>Scenes</h2>
+      <button id="add-scene-button" mat-flat-button color="primary">+</button>
+    </div>
+  </div>
+
+  <div class="test-scenario-container">
+    <button mat-flat-button color="primary" (click)="testScenario()">Test Scenario</button>
   </div>
   <div mat-dialog-actions class="bottom-row">
     <button mat-stroked-button color="primary" (click)="onCancel()">Cancel</button>

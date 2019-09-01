@@ -12,3 +12,22 @@
     right: 0;
     bottom: 0;
 }
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+#add-scene-button {
+    width: 20px;
+    height: 30px;
+    font-size: 20px;
+    align-self: center;
+    margin-left: 10px;
+}
+
+.test-scenario-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
