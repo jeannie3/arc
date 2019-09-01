@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { scenarios } from './scenarios';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'arc';
+  scenarioList = scenarios;
 }
