@@ -11,12 +11,9 @@
   <div>
     <div *ngFor="let scenario of formScenarios" style="display:inline-block">
       <div class="container" style="width: 180px; height:180px">
-        <label>
-          Scenario: {{scenario.get('title').value}}
-          <div [formGroup]="scenario" style="background: rgba(102, 102, 151, 0.8)">
-            {{scenario.get('description').value}}
-          </div>
-        </label>
+        <button [formGroup]="scenario">
+          {{scenario.get('title').value}}
+        </button>
       </div>
     </div>
   </div>

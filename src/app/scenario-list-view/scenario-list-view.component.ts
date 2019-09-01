@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { Scenario, mockScenarios } from './scenario';
+import * as _ from 'lodash';
+
 @Component({
   selector: 'app-scenario-list-view',
   templateUrl: './scenario-list-view.component.html',
@@ -9,15 +11,15 @@ import { Scenario, mockScenarios } from './scenario';
 export class ScenarioListViewComponent implements OnInit {
   scenarios: Scenario[] = mockScenarios;
   formScenario = this.formBuilder.group({
-    id: [1],
-    title: ["new"],
-    description: ["new"],
-    sceneIds: this.formBuilder.array([1, 2, 3])
+    id: [_.uniqueId("SNR")],
+    title: ["new default title"],
+    description: ["new default description"],
+    sceneIds: this.formBuilder.array([])
   })
 
   formScenarios = [
     this.formBuilder.group({
-      id: ['default id'],
+      id: [_.uniqueId("SNR")],
       title: ['default title'],
       description: ['default description'],
       sceneIds: this.formBuilder.array([])
@@ -27,10 +29,6 @@ export class ScenarioListViewComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-  }
-
-  addItem() {
-    this.scenarios.push(<Scenario>({ id: 1, name: "new" }));
   }
 
   addScenario() {
