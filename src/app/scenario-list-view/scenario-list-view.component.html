@@ -1,15 +1,23 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <p>scenario-list-view works!</p>
-<div>
-  <mat-form-field>
-    <input matInput placeholder="search">
-  </mat-form-field>
-  <button mat-button (click)="addItem()">
-    <mat-icon>add</mat-icon>
-  </button>
-
+<div style="margin: 0 3% 0 3%">
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="search">
+    </mat-form-field>
+    <button mat-button (click)="addScenario()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <div>
+    <div *ngFor="let scenario of formScenarios" style="display:inline-block">
+      <div class="container" style="width: 180px; height:180px">
+        <label>
+          Scenario: {{scenario.get('title').value}}
+          <div [formGroup]="scenario" style="background: rgba(102, 102, 151, 0.8)">
+            {{scenario.get('description').value}}
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
 </div>
-
-<li *ngFor="let scenario of scenarios">
-  <span>{{scenario.id}}</span> {{scenario.name}}
-</li>
