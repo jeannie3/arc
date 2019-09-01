@@ -1,12 +1,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <p>scenario-list-view works!</p>
 <div>
-  <form>
-    <input value="Search box" />
-  </form>
-  <button class="btn" (click)="addItem()">
-    <i class="fa fa-plus-square" aria-hidden="true"></i>
+  <mat-form-field>
+    <input matInput placeholder="search">
+  </mat-form-field>
+  <button mat-button (click)="addItem()">
+    <mat-icon>add</mat-icon>
   </button>
+
 </div>
 
 <li *ngFor="let scenario of scenarios">
