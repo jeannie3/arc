@@ -16,7 +16,14 @@ export class ScenarioDetailDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<ScenarioDetailDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data) {
-      this.scenario = SCENARIOS.find(scenario => scenario.id === data.id);
+
+      const value = this.getCookie(data.id);
+      if (value) {
+        this.scenario = JSON.parse(value);
+        this.scenario.id = data.id;
+      } else {
+        this.scenario = SCENARIOS.find(scenario => scenario.id === data.id);
+      }
 
       if (!this.scenario) {
         this.scenario = {
@@ -31,12 +38,6 @@ export class ScenarioDetailDialogComponent {
         title: new FormControl(this.scenario.title, Validators.required),
         description: new FormControl(this.scenario.description)
       });
-
-
-      this.formGroup.valueChanges.subscribe(value => {
-        // only to see value for now - delete afterwards
-        console.log(value);
-      });
     }
 
   onNoClick(): void {
@@ -44,7 +45,8 @@ export class ScenarioDetailDialogComponent {
   }
 
   onSave() {
-    console.log('save data here. Get form group value and post to url/write to file here');
+    const value = JSON.stringify(this.formGroup.value);
+    this.setCookie(this.scenario.id, value, 7);
     this.dialogRef.close();
   }
 
@@ -54,5 +56,28 @@ export class ScenarioDetailDialogComponent {
 
   testScenario() {
     console.log('test scenario here');
+  }
+
+  setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    const expires = 'expires=' + d.toUTCString();
+    document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+  }
+
+  getCookie(cname) {
+    const name = cname + '=';
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) === ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) === 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return '';
   }
 }
