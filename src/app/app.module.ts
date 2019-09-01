@@ -7,6 +7,7 @@ import { ScenarioListViewComponent } from './scenario-list-view/scenario-list-vi
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
+    ReactiveFormsModule,
     FormsModule,
     MaterialModule
   ],
