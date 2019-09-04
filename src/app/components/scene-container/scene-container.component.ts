@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { scenarios } from '../../scenarios';
+import { ScenarioService } from '../../scenario.service';
 import { Scene } from '../../scene';
+import { Scenario } from '../../scenario';
 
 @Component({
   selector: 'app-scene-container',
@@ -9,13 +10,16 @@ import { Scene } from '../../scene';
 })
 export class SceneContainerComponent implements OnInit {
   @Input() currentScene: Scene;
+  scenarios: Array<Scenario>;
 
   updateScene(nextScene: number) {
     console.log("The next scene is " + nextScene);
-    this.currentScene = (scenarios[0].scenes).find(scene => scene.id == nextScene);
+    this.currentScene = (this.scenarios[0].scenes).find(scene => scene.id == nextScene);
   }
 
-  constructor() { }
+  constructor(scenarioService: ScenarioService) {
+    this.scenarios = scenarioService.getScenarios();
+  }
 
   ngOnInit() { }
 }
