@@ -9,12 +9,10 @@ import { Scene } from '../../scene';
 })
 export class SceneContainerComponent implements OnInit {
   @Input() currentScene: Scene;
-  //currentScene: Scene = scenarios[0].scenes[0];
 
   updateScene(nextScene: number) {
     console.log("The next scene is " + nextScene);
     this.currentScene = (scenarios[0].scenes).find(scene => scene.id == nextScene);
-    //this.ngOnInit();
   }
 
   constructor() { }
