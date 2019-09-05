@@ -30,11 +30,12 @@ export class ScenarioDetailComponent {
       const value = localStorage.getItem(this.scenarioId);
       if (value) {
         this.scenario = JSON.parse(value);
+        this.scenario.id = this.scenarioId;
       }
 
       if (!this.scenario || this.scenarioId === 'new') {
         this.scenario = {
-          id: +_.uniqueId('SNR'),
+          id: _.uniqueId('SNR'),
           title: 'default title',
           description: 'default description',
           sceneIds: []
@@ -48,19 +49,14 @@ export class ScenarioDetailComponent {
       });
     }
 
-  // onNoClick(): void {
-  //   this.dialogRef.close();
-  // }
-
   onSave() {
+    console.log(this.formGroup.value);
     localStorage.setItem(this.scenario.id.toString(), JSON.stringify(this.formGroup.value));
     this.router.navigate(['/']);
-    // this.dialogRef.close({ ...this.formGroup.value });
   }
 
   onCancel() {
     this.router.navigate(['/']);
-  //   this.dialogRef.close();
   }
 
   testScenario() {
