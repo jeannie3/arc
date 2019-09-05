@@ -1,8 +1,14 @@
+import { RouterModule, Routes } from '@angular/router';
+
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { ScenarioDetailComponent } from './components/scenario-detail/scenario-detail.component';
+import { ScenarioListViewComponent } from './components/scenario-list-view/scenario-list-view.component';
 
-
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', component: ScenarioListViewComponent },
+  { path: 'scenario/:id', component: ScenarioDetailComponent},
+  { path: '**', redirectTo: '' }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
