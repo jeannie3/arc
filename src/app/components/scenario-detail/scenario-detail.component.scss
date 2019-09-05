@@ -4,13 +4,28 @@
 
 .container {
     position: relative;
-    height: 100%;
+    height: calc(100% - 40px);
+    padding: 20px;
 }
 
-.bottom-row {
+.button-container {
     position: absolute;
-    right: 0;
     bottom: 0;
+    width: calc(100% - 40px);
+}
+
+#cancel-button {
+    position: absolute;
+    right: 70px;
+}
+
+#save-button {
+    position: absolute;
+    right: 0px;
+}
+
+button {
+    margin: 5px;
 }
 
 .row {
@@ -24,10 +39,4 @@
     font-size: 20px;
     align-self: center;
     margin-left: 10px;
-}
-
-.test-scenario-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
 }

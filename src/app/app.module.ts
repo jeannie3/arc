@@ -8,13 +8,13 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ScenarioDetailDialogComponent } from './components/scenario-detail-dialog/scenario-detail-dialog';
+import { ScenarioDetailComponent } from './components/scenario-detail/scenario-detail.component';
 import { ScenarioListViewComponent } from './components/scenario-list-view/scenario-list-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ScenarioDetailDialogComponent,
+    ScenarioDetailComponent,
     ScenarioListViewComponent
   ],
   imports: [
@@ -25,9 +25,6 @@ import { ScenarioListViewComponent } from './components/scenario-list-view/scena
     ReactiveFormsModule,
     FormsModule,
     MaterialModule
-  ],
-  entryComponents: [
-    ScenarioDetailDialogComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

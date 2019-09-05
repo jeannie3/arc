@@ -5,8 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
 
 import { MatDialog } from '@angular/material/dialog';
-import { Scenario } from 'src/app/mock/mock-scenarios';
-import { ScenarioDetailDialogComponent } from '../scenario-detail-dialog/scenario-detail-dialog';
+import { Scenario } from 'src/app/models/scenario';
 
 @Component({
   selector: 'app-scenario-list-view',
@@ -24,54 +23,24 @@ export class ScenarioListViewComponent implements OnInit {
 
   ngOnInit() {
     // TODO: get scenario list from database
-    this.formScenarios = new FormArray([
-      this.formBuilder.group({
-        id: [_.uniqueId('SNR')],
-        title: ['default title'],
-        description: ['default description'],
+    this.formScenarios = new FormArray([]);
+    Object.keys(localStorage).forEach(scenarioId => {
+      const scenario: Scenario = JSON.parse(localStorage.getItem(scenarioId));
+
+      this.formScenarios.push(this.formBuilder.group({
+        id: [scenario.id],
+        title: [scenario.title],
+        description: [scenario.description],
         sceneIds: this.formBuilder.array([])
-      })
-    ]);
+      }));
+    });
   }
 
   addScenario() {
-    const newFormScenario = this.formBuilder.group({
-      id: [_.uniqueId('SNR')],
-      title: ['new default title'],
-      description: ['new default description'],
-      sceneIds: this.formBuilder.array([])
-    });
-
-    const dialogRef = this.openDetailDialog(newFormScenario.value);
-
-    dialogRef.afterClosed().subscribe(result => {
-    if (result) {
-      newFormScenario.patchValue(result);
-      this.formScenarios.push(newFormScenario);
-    }
-  });
+    this.router.navigate(['/scenario', 'new']);
   }
 
   editScenario(scenario: Scenario) {
-    const dialogRef = this.openDetailDialog(scenario);
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        const scenFormGroup = this.formScenarios.controls.find(s => s.get('id').value === result.id);
-        scenFormGroup.patchValue(result);
-      }
-    });
-  }
-
-  openDetailDialog(scenario: Scenario) {
-    const dialogRef = this.dialog.open(ScenarioDetailDialogComponent, {
-      data: {
-        ...scenario
-      },
-      width: '1000px',
-      height: '600px'
-    });
-
-    return dialogRef;
+    this.router.navigate(['/scenario', scenario.id]);
   }
 }
