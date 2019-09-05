@@ -21,6 +21,6 @@
   </div>
   <div mat-dialog-actions class="bottom-row">
     <button mat-stroked-button color="primary" (click)="onCancel()">Cancel</button>
-    <button mat-flat-button color="primary" (click)="onSave()">Save</button>
+    <button mat-flat-button color="primary" [disabled]="formGroup.invalid" (click)="onSave()">Save</button>
   </div>
 </div>

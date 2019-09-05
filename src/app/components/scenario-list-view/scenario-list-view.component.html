@@ -1,17 +1,17 @@
-<p>scenario-list-view works!</p>
+<p>Scenarios</p>
 <div style="margin: 0 3% 0 3%">
   <div>
     <mat-form-field>
-      <input matInput placeholder="search">
+      <input matInput placeholder="Search Scenario">
     </mat-form-field>
     <button mat-button (click)="addScenario()">
       <mat-icon>add</mat-icon>
     </button>
   </div>
   <div>
-    <div *ngFor="let scenario of formScenarios" style="display:inline-block">
+    <div *ngFor="let scenario of formScenarios.controls" style="display:inline-block">
       <div class="container" style="width: 180px; height:180px">
-        <button [formGroup]="scenario">
+        <button mat-raised-button [formGroup]="scenario" (click)="openDetailDialog(scenario.value)">
           {{scenario.get('title').value}}
         </button>
       </div>
