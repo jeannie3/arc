@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ScenarioService } from '../../scenario.service';
-import { Scene } from '../../scene';
-import { Scenario } from '../../scenario';
+import { Scene } from '../../models/scene';
+import { Scenario } from '../../models/scenario';
 
 @Component({
   selector: 'app-scene-container',

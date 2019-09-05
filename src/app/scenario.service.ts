@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { scenarios } from './scenarios';
+import { scenarios } from './mock/scenarios';
 
 @Injectable({
   providedIn: 'root'

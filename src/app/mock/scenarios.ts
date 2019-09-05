@@ -1,5 +1,5 @@
-import { Scenario } from './scenario';
-import { SceneType } from './scene';
+import { Scenario } from '../models/scenario';
+import { SceneType } from '../models/scene';
 
 export const scenarios: Scenario[] = [
   {
@@ -61,7 +61,7 @@ export const scenarios: Scenario[] = [
         answerChoices: [
           {
             text: 'Choice A',
-            nextScene: 2
+            nextScene: 3
           },
           {
             text: 'Choice B',
@@ -69,7 +69,7 @@ export const scenarios: Scenario[] = [
           },
           {
             text: 'Choice C',
-            nextScene: 3
+            nextScene: 2
           }
         ]
       }

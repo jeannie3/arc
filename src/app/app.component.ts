@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { scenarios } from './scenarios';
+import { scenarios } from './mock/scenarios';
 
 @Component({
   selector: 'app-root',

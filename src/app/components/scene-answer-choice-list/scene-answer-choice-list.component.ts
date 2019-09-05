@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AnswerChoice } from '../../answer-choice';
+import { AnswerChoice } from '../../models/answer-choice';
 
 @Component({
   selector: 'app-scene-answer-choice-list',

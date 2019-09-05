@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Scene } from '../../scene';
+import { Scene } from '../../models/scene';
 
 @Component({
   selector: 'app-scenario-scene-context',
