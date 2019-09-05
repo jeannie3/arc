@@ -10,7 +10,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
   styleUrls: ['./scene-container.component.scss']
 })
 export class SceneContainerComponent implements OnInit {
-  @Input() currentScene: Scene; // the input is the first scene to display
+  currentScene: Scene; // the input is the first scene to display
   scenarios: Array<Scenario>;
 
   updateScene(nextScene: number) {
@@ -20,6 +20,7 @@ export class SceneContainerComponent implements OnInit {
 
   constructor(scenarioService: ScenarioService) {
     this.scenarios = scenarioService.getScenarios();
+    this.currentScene = this.scenarios[0].scenes[0];
   }
 
   ngOnInit() { }

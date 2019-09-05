@@ -4,6 +4,7 @@ import { SceneContainerComponent } from './components/scene-container/scene-cont
 
 
 const routes: Routes = [
+  { path: 'scene', component: SceneContainerComponent },
 ];
 
 @NgModule({
