@@ -42,24 +42,36 @@ export class ScenarioListViewComponent implements OnInit {
       sceneIds: this.formBuilder.array([])
     });
 
-    this.formScenarios.push(newFormScenario);
-  }
-
-  openDetailDialog(scenario: Scenario) {
-    const dialogRef = this.dialog.open(ScenarioDetailDialogComponent, {
-      data: {
-        scenarioDetails: scenario
-      },
-      width: '1000px',
-      height: '600px'
-    });
+    const dialogRef = this.openDetailDialog(newFormScenario.value);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+    if (result) {
+      newFormScenario.patchValue(result);
+      this.formScenarios.push(newFormScenario);
+    }
+  });
+  }
+
+  editScenario(scenario: Scenario) {
+    const dialogRef = this.openDetailDialog(scenario);
+
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
         const scenFormGroup = this.formScenarios.controls.find(s => s.get('id').value === result.id);
         scenFormGroup.patchValue(result);
       }
     });
+  }
+
+  openDetailDialog(scenario: Scenario) {
+    const dialogRef = this.dialog.open(ScenarioDetailDialogComponent, {
+      data: {
+        ...scenario
+      },
+      width: '1000px',
+      height: '600px'
+    });
+
+    return dialogRef;
   }
 }

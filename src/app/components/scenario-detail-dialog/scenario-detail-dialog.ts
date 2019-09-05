@@ -17,7 +17,7 @@ export class ScenarioDetailDialogComponent {
     public dialogRef: MatDialogRef<ScenarioDetailDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data) {
 
-      this.scenario = this.data.scenarioDetails;
+      this.scenario = this.data;
       const value = localStorage.getItem(this.scenario.id.toString());
       if (value) {
         this.scenario = JSON.parse(value);
