@@ -5,7 +5,7 @@ export const scenarios: Scenario[] = [
   {
     title: 'Scenario1',
     description: 'This is a test description.',
-    id: 1,
+    id: '1',
     scenes: [
       {
         type: SceneType.Scene,
