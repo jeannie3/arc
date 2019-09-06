@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Route } from '@angular/compiler/src/core';
+import { scenarios } from './mock/scenarios';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,5 @@ import { Route } from '@angular/compiler/src/core';
 })
 export class AppComponent {
   title = 'arc';
+  scenarioList = scenarios;
 }

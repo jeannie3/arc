@@ -38,7 +38,7 @@ export class ScenarioDetailComponent {
           id: _.uniqueId('SNR'),
           title: 'default title',
           description: 'default description',
-          sceneIds: []
+          scenes: []
         };
       }
 
