@@ -1,0 +1,42 @@
+.mat-form-field {
+    width: 100%; 
+}
+
+.container {
+    position: relative;
+    height: calc(100% - 40px);
+    padding: 20px;
+}
+
+.button-container {
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 40px);
+}
+
+#cancel-button {
+    position: absolute;
+    right: 70px;
+}
+
+#save-button {
+    position: absolute;
+    right: 0px;
+}
+
+button {
+    margin: 5px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+#add-scene-button {
+    width: 20px;
+    height: 30px;
+    font-size: 20px;
+    align-self: center;
+    margin-left: 10px;
+}

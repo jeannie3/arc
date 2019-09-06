@@ -1,0 +1,23 @@
+<div class="container" [formGroup]="formGroup">
+  <div>
+    <mat-form-field class="full-width">
+      <mat-label>Title</mat-label>
+      <input formControlName="title" class="full-width" matInput>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea formControlName="description" matInput></textarea>
+    </mat-form-field>
+    <div class="scenes row">
+      <h2>Scenes</h2>
+      <button id="add-scene-button" mat-flat-button color="primary">+</button>
+    </div>
+  </div>
+  <div class="button-container">
+    <button id="test-button" mat-flat-button color="primary" (click)="testScenario()">Test Scenario</button>
+    <button id="cancel-button" mat-stroked-button color="primary" (click)="onCancel()">Cancel</button>
+    <button id="save-button" mat-flat-button color="primary" [disabled]="formGroup.invalid" (click)="onSave()">Save</button>
+  </div>
+</div>
