@@ -14,6 +14,7 @@ import { ScenarioListViewComponent } from './components/scenario-list-view/scena
 import { ScenarioSceneContextComponent } from './components/scenario-scene-context/scenario-scene-context.component';
 import { SceneAnswerChoiceListComponent } from './components/scene-answer-choice-list/scene-answer-choice-list.component';
 import { SceneContainerComponent } from './components/scene-container/scene-container.component';
+import { ExplanationViewComponent } from './components/explanation-view/explanation-view.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SceneContainerComponent } from './components/scene-container/scene-cont
     SceneContainerComponent,
     ScenarioDetailComponent,
     ScenarioListViewComponent,
+    ExplanationViewComponent,
   ],
   imports: [
     BrowserModule,
