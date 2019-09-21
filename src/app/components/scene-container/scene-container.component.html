@@ -1,6 +1,7 @@
 <mat-grid-list cols="3" rowHeight="200px">
   <mat-grid-tile colspan="1" rowspan="1" [style.backgroundColor]="'lightblue'">
     <app-scenario-scene-context [scene]="currentScene"></app-scenario-scene-context>
+    <!-- <img src="currentScene.image" alt="This is the image that is displayed in the scene." width="75" height="75"> -->
   </mat-grid-tile>
   <mat-grid-tile colSpan="1" rowSpan="1" [style.backgroundColor]="'lightgreen'">
     <app-scene-answer-choice-list [answerChoices]="currentScene.answerChoices" (answered)="updateScene($event)"></app-scene-answer-choice-list>
