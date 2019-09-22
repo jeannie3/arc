@@ -10,8 +10,9 @@ const routes: Routes = [
   { path: '', component: ScenarioListViewComponent },
   { path: 'scenario/:id', component: ScenarioDetailComponent},
   { path: 'scene', component: SceneContainerComponent },
-  { path: '**', redirectTo: '' },
-  { path: 'role', component: RoleListViewComponent}
+  { path: 'role', component: RoleListViewComponent},
+  { path: '**', redirectTo: '' }
+
 ];
 
 @NgModule({
