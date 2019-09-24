@@ -1,4 +1,6 @@
 <p>role-list-view works!</p>
+<div *ngFor="let role of roles" style="display:inline-block">
 <button mat-raised-button (click)="chooseRole()">
-    Project Manager
+    {{role}}
 </button>
+</div>

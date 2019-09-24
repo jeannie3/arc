@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./role-list-view.component.scss']
 })
 export class RoleListViewComponent implements OnInit {
+  roles = ['role1','role2','role3','role4'];
 
   constructor(private router: Router) { }
 
