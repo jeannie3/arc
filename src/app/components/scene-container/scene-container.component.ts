@@ -1,6 +1,6 @@
-import { AuthService, ErrorMessage } from 'src/app/services/auth.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
+import { AuthService } from 'src/app/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Scenario } from '../../models/scenario';
 import { ScenarioService } from '../../services/scenario.service';
@@ -17,6 +17,9 @@ export class SceneContainerComponent implements OnInit {
   currentScene: Scene; // the input is the first scene to display
   scenarios: Array<Scenario>;
 
+  user: string;
+  pass: string;
+
   updateScene(nextScene: string) {
     console.log('The next scene is ' + nextScene);
     this.currentScene = (scenes).find(scene => scene.id === nextScene);
@@ -25,7 +28,7 @@ export class SceneContainerComponent implements OnInit {
   constructor(private scenarioService: ScenarioService,
               private userService: UserService,
               private authService: AuthService) {
-    this.scenarios = scenarioService.getScenarios();
+    // this.scenarios = scenarioService.getScenario('1');
     this.currentScene = scenes[0];
   }
 
@@ -33,17 +36,14 @@ export class SceneContainerComponent implements OnInit {
 
   testService() {
     // TODO: move to login screen/component
-    this.authService.login('asdf@asdf.com', 'hao123').subscribe(
+    this.authService.login(this.user, this.pass).subscribe(
       (res) => {
         // TODO: get token from here
-        console.log('login', res);
-        console.log(res[0].token);
-        this.authService.setAccessToken(res[0].token);
+        localStorage.setItem('accessToken', res[0].token);
       },
       (err: HttpErrorResponse) => {
-        // if (err.error === ErrorMessage.INCORRECT_LOGIN) {
+        localStorage.setItem('accessToken', null);
         console.log('Invalid email or password');
-        // }
       }
     );
 
@@ -70,5 +70,22 @@ export class SceneContainerComponent implements OnInit {
     // this.userService.getUserProgress(7).subscribe(res => {
     //   console.log(res);
     // });
+
+    // // get specific scenario
+    // this.scenarioService.getScenario('1').subscribe(res => {
+    //   console.log(res)
+    // })
+
+    // this.scenarioService.getRoles('1').subscribe(res => {
+    //   console.log(res)
+    // });
+
+    // this.scenarioService.getScenes('1').subscribe(res => {
+    //   console.log(res)
+    // });
+
+    this.scenarioService.getAnswerChoices('1').subscribe(res => {
+      console.log(res)
+    });
   }
 }

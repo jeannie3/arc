@@ -10,15 +10,14 @@ import { Progress } from '../models/progress';
 })
 export class UserService {
 
-  baseUrl = 'http://35.239.204.157:3000';
+  private baseUrl = 'http://35.239.204.157:3000';
 
-  constructor(private http: HttpClient,
-              private authService: AuthService) { }
+  constructor(private http: HttpClient) { }
 
   getUserProgress(userId): Observable<Progress> {
     return this.http.get<Progress>(this.baseUrl + '/progress?user_id=eq.' + userId, {
       headers: new HttpHeaders({
-        Authorization: 'Bearer ' + this.authService.getAccessToken()
+        Authorization: 'Bearer ' + localStorage.getItem('accessToken')
       })
     });
   }
