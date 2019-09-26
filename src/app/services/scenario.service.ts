@@ -1,11 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { AnswerChoice } from '../models/answer-choice';
+import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Role } from '../models/role';
 import { Scenario } from '../models/scenario';
 import { Scene } from '../models/scene';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +16,17 @@ export class ScenarioService {
 
   private baseUrl = 'http://35.239.204.157:3000';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private authService: AuthService) { }
 
   getScenario(scenarioId: string): Observable<Scenario> {
     return this.http.get<Scenario>(this.baseUrl + '/scenarios?id=eq.' + scenarioId, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('accessToken')
       })
-    });
+    }).pipe(
+      catchError(this.authService.handleError)
+    );
   }
 
   getRoles(scenarioId: string): Observable<Role[]> {
@@ -29,7 +34,9 @@ export class ScenarioService {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('accessToken')
       })
-    });
+    }).pipe(
+      catchError(this.authService.handleError)
+    );
   }
 
   getScenes(roleId: string): Observable<Scene[]> {
@@ -37,7 +44,9 @@ export class ScenarioService {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('accessToken')
       })
-    });
+    }).pipe(
+      catchError(this.authService.handleError)
+    );
   }
 
   getAnswerChoices(sceneId: string): Observable<AnswerChoice[]> {
@@ -45,6 +54,8 @@ export class ScenarioService {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('accessToken')
       })
-    });
+    }).pipe(
+      catchError(this.authService.handleError)
+    );
   }
 }

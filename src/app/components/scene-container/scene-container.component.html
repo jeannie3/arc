@@ -6,15 +6,3 @@
     <app-scene-answer-choice-list [answerChoices]="currentScene.answerChoices" (answered)="updateScene($event)"></app-scene-answer-choice-list>
   </mat-grid-tile> 
 </mat-grid-list>
-
-<button (click)="testService()">login</button>
-<button (click)="testService2()">test service</button>
-
-<mat-form-field class="example-full-width">
-  <input matInput placeholder="username" [(ngModel)]="user">
-</mat-form-field>
-
-<mat-form-field class="example-full-width">
-  <input matInput placeholder="password" [(ngModel)]="pass">
-</mat-form-field>
-
