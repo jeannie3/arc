@@ -1,42 +1,42 @@
-﻿import { NgModule }      from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule }    from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { MaterialModule } from './material.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
-// used to create fake backend
-import { fakeBackendProvider } from './_helpers';
-
-import { AppComponent }  from './app.component';
-import { routing }        from './app.routing';
-
-import { AlertComponent } from './_components';
-import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { HomeComponent } from './home';
-import { LoginComponent } from './login';
-import { RegisterComponent } from './register';
+import { ScenarioDetailComponent } from './components/scenario-detail/scenario-detail.component';
+import { ScenarioListViewComponent } from './components/scenario-list-view/scenario-list-view.component';
+import { ScenarioSceneContextComponent } from './components/scenario-scene-context/scenario-scene-context.component';
+import { SceneAnswerChoiceListComponent } from './components/scene-answer-choice-list/scene-answer-choice-list.component';
+import { SceneContainerComponent } from './components/scene-container/scene-container.component';
 
 @NgModule({
-    imports: [
-        BrowserModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        routing
-    ],
-    declarations: [
-        AppComponent,
-        AlertComponent,
-        HomeComponent,
-        LoginComponent,
-        RegisterComponent
-    ],
-    providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-        // provider used to create fake backend
-        fakeBackendProvider
-    ],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    ScenarioSceneContextComponent,
+    SceneAnswerChoiceListComponent,
+    SceneContainerComponent,
+    ScenarioDetailComponent,
+    ScenarioListViewComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MaterialModule,
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
-
 export class AppModule { }
