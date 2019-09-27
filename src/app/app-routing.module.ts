@@ -17,7 +17,7 @@ const routes: Routes = [
   // { path: 'scenario/:id', component: ScenarioDetailComponent},
   { path: 'scene', component: SceneContainerComponent },
   { path: 'role', component: RoleListViewComponent},
-  { path: '**', redirectTo: 'scene' }
+  { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({
