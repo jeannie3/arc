@@ -12,7 +12,7 @@ export const scenarios: Scenario[] = [
         title: 'Scene1',
         id: 1,
         description: 'This will be the first scene displayed',
-        image: 'Hi, I am supposed to be an image',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/330px-SNice.svg.png',
         scenarioId: 1,
         answerChoices: [
           {
@@ -34,7 +34,7 @@ export const scenarios: Scenario[] = [
         title: 'Scene2',
         id: 2,
         description: 'This will be the second scene displayed',
-        image: 'Hi, I am supposed to be an image',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/330px-SNice.svg.png',
         scenarioId: 1,
         answerChoices: [
           {
@@ -56,7 +56,7 @@ export const scenarios: Scenario[] = [
         title: 'Scene3',
         id: 3,
         description: 'This will be the third scene displayed',
-        image: 'Hi, I am supposed to be an image',
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/330px-SNice.svg.png',
         scenarioId: 1,
         answerChoices: [
           {
