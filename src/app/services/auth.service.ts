@@ -3,13 +3,14 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private baseUrl = 'http://35.239.204.157:3000';
+  private baseUrl = environment.baseUrl;
 
   handleError = (errorResponse: HttpErrorResponse) => {
     let message = '';

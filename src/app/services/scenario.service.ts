@@ -8,13 +8,14 @@ import { Role } from '../models/role';
 import { Scenario } from '../models/scenario';
 import { Scene } from '../models/scene';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScenarioService {
 
-  private baseUrl = 'http://35.239.204.157:3000';
+  private baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient,
               private authService: AuthService) { }

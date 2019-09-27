@@ -5,13 +5,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Progress } from '../models/progress';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private baseUrl = 'http://35.239.204.157:3000';
+  private baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient,
               private authService: AuthService) { }

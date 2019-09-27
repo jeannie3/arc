@@ -1,5 +1,3 @@
-import { AnswerChoice } from './answer-choice';
-
 export enum SceneType {
   Conflict,
   Feedback
