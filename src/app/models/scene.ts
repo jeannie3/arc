@@ -8,5 +8,5 @@ export class Scene {
   description: string;
   image: string;
   roleId: string;
-  type: SceneType;
+  type: string;
 }

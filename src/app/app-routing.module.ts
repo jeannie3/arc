@@ -7,9 +7,9 @@ import { ExplanationViewComponent } from './components/explanation-view/explanat
 const routes: Routes = [
   // { path: '', component: ScenarioListViewComponent },
   // { path: 'scenario/:id', component: ScenarioDetailComponent},
-  { path: 'scene', component: SceneContainerComponent },
-  { path: 'explanation/:id', component: ExplanationViewComponent},
-  { path: '**', redirectTo: 'scene' }
+  { path: ':roleId/scene/:sceneId', component: SceneContainerComponent },
+  { path: ':roleId/explanation/:sceneId', component: ExplanationViewComponent},
+  { path: '**', redirectTo: '/' }
 ];
 
 @NgModule({
