@@ -3,6 +3,6 @@
     <app-scenario-scene-context [scene]="currentScene"></app-scenario-scene-context>
   </mat-grid-tile>
   <mat-grid-tile colSpan="1" rowSpan="1" [style.backgroundColor]="'lightgreen'">
-    <app-scene-answer-choice-list [answerChoices]="currentScene.answerChoices" (answered)="updateScene($event)"></app-scene-answer-choice-list>
+    <app-scene-answer-choice-list [answerChoices]="answerChoices" (answered)="updateScene($event)"></app-scene-answer-choice-list>
   </mat-grid-tile> 
 </mat-grid-list>
