@@ -8,15 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { fakeBackendProvider } from './_helpers';
 
-
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
@@ -56,7 +55,7 @@ import { SceneContainerComponent } from './components/scene-container/scene-cont
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ],
-  providers: [ 
+  providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 

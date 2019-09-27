@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ScenarioService } from '../../scenario.service';
-import { Scene } from '../../models/scene';
+import { Component, OnInit } from '@angular/core';
+
 import { Scenario } from '../../models/scenario';
-import { MatGridListModule } from '@angular/material/grid-list';
+import { Scene } from '../../models/scene';
+import { scenes } from 'src/app/mock/scenes';
 
 @Component({
   selector: 'app-scene-container',
@@ -13,15 +13,16 @@ export class SceneContainerComponent implements OnInit {
   currentScene: Scene; // the input is the first scene to display
   scenarios: Array<Scenario>;
 
-  updateScene(nextScene: number) {
-    console.log("The next scene is " + nextScene);
-    this.currentScene = (this.scenarios[0].scenes).find(scene => scene.id == nextScene);
-  }
 
-  constructor(scenarioService: ScenarioService) {
-    this.scenarios = scenarioService.getScenarios();
-    this.currentScene = this.scenarios[0].scenes[0];
+  constructor() {
+    // this.scenarios = scenarioService.getScenario('1');
+    this.currentScene = scenes[0];
   }
 
   ngOnInit() { }
+
+  updateScene(nextScene: string) {
+    console.log('The next scene is ' + nextScene);
+    this.currentScene = (scenes).find(scene => scene.id === nextScene);
+  }
 }
