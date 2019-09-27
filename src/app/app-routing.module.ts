@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', component: ScenarioListViewComponent },
   { path: 'scenario/:id', component: ScenarioDetailComponent},
   { path: 'scene', component: SceneContainerComponent },
-  { path: 'explanation', component: ExplanationViewComponent},
+  { path: 'explanation/:id', component: ExplanationViewComponent},
   { path: '**', redirectTo: '' }
 ];
 
