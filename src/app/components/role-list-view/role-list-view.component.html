@@ -1,6 +1,6 @@
 <p>role-list-view works!</p>
-<div *ngFor="let role of roles" style="display:inline-block">
-<button mat-raised-button (click)="chooseRole()">
-    {{role}}
+<div *ngFor="let role of formRoles.controls" style="display:inline-block">
+<button mat-raised-button (click)="chooseRole(role.value)">
+    {{role.get('title').value}}
 </button>
 </div>
