@@ -1,4 +1,6 @@
 export class AnswerChoice {
+  id: string;
   text: string;
-  nextScene: number;
+  currentSceneId: string;
+  nextSceneId: string;
 }

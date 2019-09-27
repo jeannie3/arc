@@ -1,5 +1,6 @@
 export class Role {
-  id: string;
-  title: string;
-  link: string;
+    id: string;
+    name: string;
+    scenarioId: string;
+    firstSceneId: string;
 }

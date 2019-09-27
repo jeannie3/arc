@@ -1,16 +1,12 @@
-import { AnswerChoice } from './answer-choice';
-
 export enum SceneType {
-  Dialog,
-  Scene
+  Conflict,
+  Feedback
 }
 
 export class Scene {
-  id: number;
-  title: string;
+  id: string;
   description: string;
   image: string;
-  scenarioId: number;
-  answerChoices: Array<AnswerChoice>;
+  roleId: string;
   type: SceneType;
 }
