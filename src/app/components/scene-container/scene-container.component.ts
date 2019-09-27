@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ScenarioService } from '../../scenario.service';
-import { Scene, SceneType } from '../../models/scene';
-import { Scenario } from '../../models/scenario';
 import { Router } from '@angular/router';
+import { Scene, SceneType } from '../../models/scene';
+import { scenes } from 'src/app/mock/scenes';
 
 @Component({
   selector: 'app-scene-container',
@@ -11,21 +10,20 @@ import { Router } from '@angular/router';
 })
 export class SceneContainerComponent implements OnInit {
   currentScene: Scene; 
-  scenarios: Array<Scenario>;
 
-  updateScene(nextScene: number) {
+  updateScene(nextScene: string) {
     console.log("The next scene is " + nextScene);
 
     // if the next scene is -1, the current scene is the last scene
-    this.currentScene = (this.scenarios[0].scenes).find(scene => scene.id == nextScene);
+    this.currentScene = (scenes).find(scene => scene.id == nextScene);
     if(this.currentScene.type == SceneType.Feedback) {
       this.router.navigate(['/explanation/' + nextScene]);
     }
   }
 
-  constructor(scenarioService: ScenarioService, private router: Router) {
-    this.scenarios = scenarioService.getScenarios();
-    this.currentScene = this.scenarios[0].scenes[0];
+  constructor(private router: Router) {
+    // this.scenarios = scenarioService.getScenario('1');
+    this.currentScene = scenes[0];
   }
 
   ngOnInit() { }
