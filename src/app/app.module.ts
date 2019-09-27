@@ -12,13 +12,8 @@ import { MaterialModule } from './material.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { fakeBackendProvider } from './_helpers';
-
-import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
-import { AlertComponent } from './components';
 
 import { ScenarioDetailComponent } from './components/scenario-detail/scenario-detail.component';
 import { ScenarioListViewComponent } from './components/scenario-list-view/scenario-list-view.component';
@@ -34,11 +29,8 @@ import { SceneContainerComponent } from './components/scene-container/scene-cont
     SceneContainerComponent,
     ScenarioDetailComponent,
     ScenarioListViewComponent,
-    HomeComponent,
     LoginComponent,
     RegisterComponent,
-    AlertComponent
-
   ],
   imports: [
     BrowserModule,
@@ -55,11 +47,6 @@ import { SceneContainerComponent } from './components/scene-container/scene-cont
     CUSTOM_ELEMENTS_SCHEMA
   ],
   providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-        // provider used to create fake backend
-        fakeBackendProvider
     ],
   bootstrap: [AppComponent]
 })
