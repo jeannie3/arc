@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatStepperModule} from '@angular/material/stepper'; 
 import {Scene} from '../../models/scene';
 
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ScenarioService } from 'src/app/services/scenario.service';
 
 
@@ -19,7 +19,7 @@ export class ExplanationViewComponent implements OnInit {
   roleId;
   success: boolean;
 
-  constructor(private _Activatedroute:ActivatedRoute, private scenarioService: ScenarioService) {
+  constructor(private router: Router, private _Activatedroute:ActivatedRoute, private scenarioService: ScenarioService) {
     this._Activatedroute.paramMap.subscribe(params => { 
       this.id = params.get('sceneId');
       this.roleId = params.get('roleId');
@@ -37,4 +37,7 @@ export class ExplanationViewComponent implements OnInit {
   ngOnInit() {
   }
 
+  tryAgain() {
+    this.router.navigate(['/role']);
+  }
 }
