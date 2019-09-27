@@ -1,10 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Scene, SceneType } from '../../models/scene';
-import { scenes } from 'src/app/mock/scenes';
 import { AnswerChoice } from 'src/app/models/answer-choice';
 import { ScenarioService} from '../../services/scenario.service';
-import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-scene-container',
