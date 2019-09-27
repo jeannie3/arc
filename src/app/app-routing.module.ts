@@ -5,13 +5,21 @@ import { NgModule } from '@angular/core';
 import { RoleListViewComponent } from './components/role-list-view/role-list-view.component';
 import { SceneContainerComponent } from './components/scene-container/scene-container.component';
 
+
+import { LoginComponent } from './login';
+import { RegisterComponent } from './register';
+
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+
+
   // { path: '', component: ScenarioListViewComponent },
   // { path: 'scenario/:id', component: ScenarioDetailComponent},
   { path: ':roleId/scene/:sceneId', component: SceneContainerComponent },
   { path: ':roleId/explanation/:sceneId', component: ExplanationViewComponent},
   { path: 'role', component: RoleListViewComponent},
-  { path: '**', redirectTo: 'scene' }
+  { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({
