@@ -48,4 +48,8 @@ export class RegisterComponent implements OnInit {
                     this.loading = false;
                 });
     }
+
+    cancel() {
+        this.router.navigate(['/login']);
+    }
 }
