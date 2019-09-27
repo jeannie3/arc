@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormArray, FormBuilder } from '@angular/forms';
-import { Role } from 'src/app/models/role';
-import { ScenarioService } from '../../services/scenario.service';
 
+import { Router } from '@angular/router';
+import { ScenarioService } from '../../services/scenario.service';
 
 @Component({
   selector: 'app-role-list-view',
