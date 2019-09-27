@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormArray, FormBuilder } from '@angular/forms';
 import { Role } from 'src/app/models/role';
+import { ScenarioService } from '../../services/scenario.service';
 
 
 @Component({
@@ -10,26 +11,33 @@ import { Role } from 'src/app/models/role';
   styleUrls: ['./role-list-view.component.scss']
 })
 export class RoleListViewComponent implements OnInit {
+  scenarioTitle: string;
+  scenarioDescription: string;
   formRoles: FormArray;
-  stuff = ['/scene','','/scenario/new']
+  
 
-  constructor(private router: Router,private formBuilder: FormBuilder) { }
+  constructor(private router: Router,private formBuilder: FormBuilder, private scenarioService: ScenarioService) { }
 
   ngOnInit() {
-  this.formRoles = new FormArray([]);
-  for(var i = 1; i < 4; i++){
-  this.formRoles.push(this.formBuilder.group({
-        id: '0',
-        title: 'Role' + i,
-        link: this.stuff[i-1]
-  }));
-  }
+    this.scenarioService.getScenario('1').subscribe( result =>{
+      this.scenarioTitle = result[0].title;
+      this.scenarioDescription = result[0].description;
+    });
+    this.formRoles = new FormArray([]);
+    this.scenarioService.getRoles('1').subscribe( roles => {
+      roles.forEach(role => {
+        this.formRoles.push(this.formBuilder.group({
+            id: role.id,
+            name: role.name,
+            first_scene_id: role.first_scene_id
+        }));
+      });
+    });
   }
 
     
-  chooseRole(role: Role){
-      console.log(role);
-      this.router.navigate([role.link]);
+  chooseRole(role){
+      this.router.navigate([role.id,'scene',role.first_scene_id]);
   }
 
 }
