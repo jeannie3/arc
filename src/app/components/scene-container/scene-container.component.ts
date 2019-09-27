@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Scene, SceneType } from '../../models/scene';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+
 import { AnswerChoice } from 'src/app/models/answer-choice';
-import { ScenarioService} from '../../services/scenario.service';
+import { ScenarioService } from '../../services/scenario.service';
+import { Scene } from '../../models/scene';
 
 @Component({
   selector: 'app-scene-container',
@@ -16,15 +17,9 @@ export class SceneContainerComponent implements OnInit {
   roleId: string;
 
   updateScene(nextScene: string) {
-    console.log("The next scene is " + nextScene);
-
     // if the next scene is -1, the current scene is the last scene
-    console.log("***************")
-    console.log(this.allScenesForRole);
-    this.currentScene = this.allScenesForRole.find(scene => scene.id == nextScene);
-    console.log(this.currentScene.type);
+    this.currentScene = this.allScenesForRole.find(scene => scene.id === nextScene);
 
-    //this.answerChoices = this.scenarioService.getAnswerChoices(this.currentScene.id);
     if (this.currentScene.type === 'FB') {
       this.router.navigate([this.roleId + '/explanation/' + nextScene]);
     } else {
@@ -32,15 +27,16 @@ export class SceneContainerComponent implements OnInit {
     }
   }
 
-  constructor(private router: Router, private scenarioService: ScenarioService, private _Activatedroute:ActivatedRoute) {
-    // this.scenarios = scenarioService.getScenario('1');
+  constructor(private router: Router, private scenarioService: ScenarioService, private _Activatedroute: ActivatedRoute) {
     this._Activatedroute.paramMap.subscribe(params => {
       this.roleId = params.get('roleId');
       scenarioService.getScenes(this.roleId).subscribe(scenes => {
         this.allScenesForRole = scenes;
 
-        let firstSceneId = params.get('sceneId');
-        this.currentScene = this.allScenesForRole.find(scene => scene.id == firstSceneId);
+        const firstSceneId = params.get('sceneId');
+        this.currentScene = this.allScenesForRole.find(scene => +scene.id === +firstSceneId);
+
+        console.log(this.currentScene)
 
         scenarioService.getAnswerChoices(this.currentScene.id).subscribe(answers => {
           this.answerChoices = answers;

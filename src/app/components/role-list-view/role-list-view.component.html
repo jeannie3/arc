@@ -1,0 +1,7 @@
+<h1>{{scenarioTitle}}</h1>
+<p>{{scenarioDescription}}</p>
+<div *ngFor="let role of formRoles.controls" style="display:inline-block">
+<button mat-raised-button (click)="chooseRole(role.value)">
+    {{role.get('name').value}}
+</button>
+</div>

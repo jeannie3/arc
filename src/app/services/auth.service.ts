@@ -14,8 +14,10 @@ export class AuthService {
 
   handleError = (errorResponse: HttpErrorResponse) => {
     let message = '';
-    if (errorResponse.status === 401) {
+    if (errorResponse.status === 401 && localStorage.getItem('userInfo') !== null) {
       this.renewAccessToken();
+    } else if (errorResponse.status === 401 && localStorage.getItem('userInfo') === null) {
+      message = 'You need to login beforehand';
     } else if (errorResponse.status === 403 || errorResponse.status === 400) {
       message = 'Invalid email or password';
     } else if (errorResponse.status === 404) {
@@ -26,7 +28,7 @@ export class AuthService {
       message = errorResponse.statusText;
     }
 
-    if (errorResponse.status !== 401) {
+    if (errorResponse.status !== 401 || localStorage.getItem('userInfo') === null) {
       window.alert(message);
     }
     return throwError(errorResponse);
