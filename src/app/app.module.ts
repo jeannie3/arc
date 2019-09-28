@@ -13,7 +13,7 @@ import { MaterialModule } from './material.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RoleListViewComponent } from './components/role-list-view/role-list-view.component';
-import { LoginComponent } from './login';
+import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register';
 import { ScenarioDetailComponent } from './components/scenario-detail/scenario-detail.component';
 import { ScenarioListViewComponent } from './components/scenario-list-view/scenario-list-view.component';

@@ -6,7 +6,7 @@ import { RoleListViewComponent } from './components/role-list-view/role-list-vie
 import { SceneContainerComponent } from './components/scene-container/scene-container.component';
 
 
-import { LoginComponent } from './login';
+import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register';
 
 const routes: Routes = [
