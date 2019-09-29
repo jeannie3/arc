@@ -1,9 +1,9 @@
 <mat-grid-list cols="3">
   <mat-grid-tile colspan="1" rowspan="1" [style.backgroundColor]="'lightblue'">
     <app-scenario-scene-context [scene]="currentScene"></app-scenario-scene-context>
-    <img *ngIf="currentScene.image_link !== null" [src]="currentScene.image_link" alt="This is the image that is displayed in the scene." width="75" height="75">
+<!--    <img *ngIf="currentScene.image_link !== null" [src]="currentScene.image_link" alt="This is the image that is displayed in the scene." width="75" height="75">-->
   </mat-grid-tile>
-  <mat-grid-tile colSpan="1" rowSpan="1" [style.backgroundColor]="'lightgreen'">
+  <mat-grid-tile colSpan="1" rowSpan="2" [style.backgroundColor]="'lightgreen'">
     <app-scene-answer-choice-list [answerChoices]="answerChoices" (answered)="updateScene($event)"></app-scene-answer-choice-list>
   </mat-grid-tile> 
 </mat-grid-list>
