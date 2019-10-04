@@ -1,6 +1,7 @@
 export enum SceneType {
-  Conflict,
-  Feedback
+   CC = "CC",
+   FB_POSITIVE = "FB_POSITIVE",
+   FB_NEGATIVE = "FB_NEGATIVE"
 }
 
 export class Scene {
@@ -8,5 +9,5 @@ export class Scene {
   description: string;
   image: string;
   roleId: string;
-  type: string;
+  type: SceneType;
 }

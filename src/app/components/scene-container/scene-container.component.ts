@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AnswerChoice } from 'src/app/models/answer-choice';
 import { ScenarioService } from '../../services/scenario.service';
-import { Scene } from '../../models/scene';
+import { Scene, SceneType } from '../../models/scene';
 
 @Component({
   selector: 'app-scene-container',
@@ -20,7 +20,7 @@ export class SceneContainerComponent implements OnInit {
     // if the next scene is -1, the current scene is the last scene
     this.currentScene = this.allScenesForRole.find(scene => scene.id === nextScene);
 
-    if (this.currentScene.type === 'FB') {
+    if (this.currentScene.type === SceneType.FB_POSITIVE || this.currentScene.type === SceneType.FB_NEGATIVE) {
       this.router.navigate([this.roleId + '/explanation/' + nextScene]);
     } else {
       this.router.navigate([this.roleId + '/scene/' + nextScene]);
