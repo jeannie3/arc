@@ -1,12 +1,12 @@
-<div class="hflex-container" style="background-color: skyblue; margin: auto; height: 100%">
-    <div style="border: 3px solid black; background-color: white; text-align: center; border-radius: 5px; margin: auto; display: flex">
-        <img *ngIf="currentScene.image_link !== null" [src]="currentScene.image_link" alt="This is the image that is displayed in the scene." style="flex-grow: 10">
+<div class="hflex-container">
+    <div class="picBox">
+        <img *ngIf="currentScene.image_link !== null" [src]="currentScene.image_link" alt="This is the image that is displayed in the scene.">
     </div>
-    <div style="width: 500px" class = "vflex-container">
-        <div style="border: 3px solid black; background-color: white; border-radius: 5px; margin: 10px; column-fill: auto; flex-grow: 1">
+    <div class = "vflex-container">
+        <div class="descBox">
            <app-scenario-scene-context [scene]="currentScene"></app-scenario-scene-context>
         </div>
-        <div style="flex-grow: 1">
+        <div class="ansBox">
         <app-scene-answer-choice-list [answerChoices]="answerChoices" (answered)="updateScene($event)"></app-scene-answer-choice-list>
         </div>
     </div>

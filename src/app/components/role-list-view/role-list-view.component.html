@@ -1,10 +1,10 @@
 <body>
 <div class ="isolated">
-<h1 style="font-size: 60px">{{scenarioTitle}}</h1>
+<h1 class="bigText">{{scenarioTitle}}</h1>
 </div>
-<p class="professional">{{scenarioDescription}}</p>
+<p class="veryIsolated">{{scenarioDescription}}</p>
 <div class = "isolatedBlueBox">
-<div class = "isolatedWhite" *ngFor="let role of formRoles.controls" style="display:inline-block">
+<div class = "isolatedWhite" *ngFor="let role of formRoles.controls">
 <button mat-raised-button (click)="chooseRole(role.value)">
     {{role.get('name').value}}
 </button>

@@ -1,5 +1,5 @@
 <p>Scenarios</p>
-<div style="margin: 0 3% 0 3%">
+<div class="scenarioContainer">
   <div>
     <mat-form-field>
       <input matInput placeholder="Search Scenario">
@@ -9,8 +9,8 @@
     </button>
   </div>
   <div>
-    <div *ngFor="let scenario of formScenarios.controls" style="display:inline-block">
-      <div class="container" style="width: 180px; height:180px">
+    <div *ngFor="let scenario of formScenarios.controls" class="list">
+      <div class="fixedSize">
         <button mat-raised-button [formGroup]="scenario" (click)="editScenario(scenario.value)">
           {{scenario.get('title').value}}
         </button>
