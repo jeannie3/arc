@@ -1,33 +1,55 @@
-<h2>Register</h2>
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-        <label for="firstName">Name</label>
-        <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-            <div *ngIf="f.firstName.errors.required">Name is required</div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="username">Email</label>
-        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-            <div *ngIf="f.username.errors.required">Email is required</div>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">Password is required</div>
-            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
-        </div>
-    </div>
-    <div class="form-group">
-        <button [disabled]="loading" class="btn btn-primary">
-            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-            Register
-        </button>
-    </div>
-</form>
+<body>
+<div class="main-div">
+    <mat-card>
+        <mat-toolbar-header>
+                <mat-card-title>Register</mat-card-title>
+        </mat-toolbar-header>
+        <mat-card-content>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <table class="example-full-width" cellspacing="0">
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <div class="form-group">
+                                    <input matInput placeholder="Name" type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                                </div>
+                            </mat-form-field>
+                        </td>
+                    </tr>
 
-<button (click)="cancel()">Cancel</button>
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                    <div class="form-group">
+                                            <input matInput placeholder="Email" type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                                    </div>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                    <div class="form-group">
+                                            <input matInput placeholder="Password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                    </div>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    
+                    <div class="form-group">
+                        <button mat-raised-button color="primary" [disabled]="loading" class="btn btn-primary">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                            Register
+                        </button>
+                    </div>
+                </table>
+            </form>
+        </mat-card-content>
+        <mat-card-action>
+                <button mat-raised-button color="primary" (click)="cancel()">Cancel</button>
+        </mat-card-action>
+    </mat-card>
+
+</div>
+</body>
