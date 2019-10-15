@@ -33,10 +33,15 @@ export class AuthService {
     }
 
     if (errorResponse.status !== 401 || localStorage.getItem('userInfo') === null) {
-      this.dialog.open(ErrorMessageDialogComponent, {
+      const dialogRef = this.dialog.open(ErrorMessageDialogComponent, {
         data: {
           errorMessage: message
         }
+      });
+      document.getElementById('main-body').classList.add('blur');
+
+      dialogRef.afterClosed().subscribe(() => {
+        document.getElementById('main-body').classList.remove('blur');
       });
     }
     return throwError(errorResponse);
