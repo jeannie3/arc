@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { first } from 'rxjs/operators';
 
 @Component({
     templateUrl: 'register.component.html',
@@ -11,8 +10,6 @@ import { first } from 'rxjs/operators';
 })
 export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
-    loading = false;
-    submitted = false;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -22,34 +19,21 @@ export class RegisterComponent implements OnInit {
     }
 
     ngOnInit() {
+        const emailRegexValidator = '[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+';
+
         this.registerForm = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            username: ['', Validators.required],
-            password: ['', [Validators.required, Validators.minLength(6)]]
+            name: ['', Validators.required],
+            email: ['', [Validators.required, Validators.pattern(emailRegexValidator)]],
+            password: ['', [Validators.required, Validators.minLength(8)]]
         });
     }
 
-    // convenience getter for easy access to form fields
-    get f() { return this.registerForm.controls; }
-
     onSubmit() {
-        this.submitted = true;
-
-        // stop here if form is invalid
-        if (this.registerForm.invalid) {
-            return;
-        }
-
-        this.loading = true;
-        this.authenticationService.register(this.f.firstName.value, this.f.username.value, this.f.password.value)
-            .pipe(first())
-            .subscribe(
-                data => {
-                    this.router.navigate(['/login']);
-                },
-                error => {
-                    this.loading = false;
-                });
+        this.authenticationService.register(
+            this.registerForm.value.name, this.registerForm.value.email, this.registerForm.value.password
+        ).subscribe(() => {
+            this.router.navigate(['/login']); // TODO: change to navigate to the scenario???
+        });
     }
 
     cancel() {

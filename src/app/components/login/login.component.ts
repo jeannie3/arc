@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../../services/auth.service';
-import { first } from 'rxjs/operators';
 
 @Component({
     templateUrl: 'login.component.html',
@@ -11,7 +10,6 @@ import { first } from 'rxjs/operators';
 )
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
-    loading = false;
     returnUrl: string;
 
     constructor(
@@ -23,34 +21,21 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
+        const emailRegexValidator = '[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+';
+
         this.loginForm = this.formBuilder.group({
-            email: ['', [Validators.required, Validators.email]],
+            email: ['', [Validators.required, Validators.pattern(emailRegexValidator)]],
             password: ['', Validators.required]
         });
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-
-
-        // console.log(this.loginForm)
-        this.loginForm.valueChanges.subscribe(value => {
-            console.log(this.loginForm);
-        });
     }
 
     onSubmit() {
-        this.loading = true;
-
-        this.authenticationService.login(this.loginForm.value.email, this.loginForm.value.password)
-            .pipe(first())
-            .subscribe(
-                data => {
-                    this.router.navigate(['/role']);
-                },
-                error => {
-                    this.loading = false;
-                }
-            );
+        this.authenticationService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(() => {
+            this.router.navigate(['/role']);
+        });
     }
 
     register() {

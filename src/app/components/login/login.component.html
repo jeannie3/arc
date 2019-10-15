@@ -8,7 +8,7 @@
         <mat-form-field>
             <input matInput placeholder="Email" type="text" formControlName="email">
             <mat-error *ngIf="loginForm.controls.email.errors?.required">Email is required</mat-error>
-            <mat-error *ngIf="loginForm.controls.email.errors?.email">Email is invalid</mat-error>
+            <mat-error *ngIf="loginForm.controls.email.errors?.pattern">Email is invalid</mat-error>
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Password" type="password" formControlName="password"/>
@@ -17,7 +17,6 @@
     </mat-card-content>
     <mat-card-action class="action-buttons">
         <button mat-raised-button color="primary" [disabled]="loginForm.invalid" (click)="onSubmit()">
-            <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> -->
             Login
         </button>
         <button mat-raised-button color="primary" (click)="register()">

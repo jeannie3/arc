@@ -2,54 +2,32 @@
 <div class="main-div">
     <mat-card>
         <mat-toolbar-header>
-                <mat-card-title>Register</mat-card-title>
+            <mat-card-title>Register</mat-card-title>
         </mat-toolbar-header>
-        <mat-card-content>
-            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                <table class="example-full-width" cellspacing="0">
-                    <tr>
-                        <td>
-                            <mat-form-field>
-                                <div class="form-group">
-                                    <input matInput placeholder="Name" type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-                                </div>
-                            </mat-form-field>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <mat-form-field>
-                                    <div class="form-group">
-                                            <input matInput placeholder="Email" type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                                    </div>
-                            </mat-form-field>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <mat-form-field>
-                                    <div class="form-group">
-                                            <input matInput placeholder="Password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                                    </div>
-                            </mat-form-field>
-                        </td>
-                    </tr>
-                    
-                    <div class="form-group">
-                        <button mat-raised-button color="primary" [disabled]="loading" class="btn btn-primary">
-                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                            Register
-                        </button>
-                    </div>
-                </table>
-            </form>
+        <mat-card-content [formGroup]="registerForm" class="flex-col">
+            <mat-form-field>
+                <input matInput placeholder="Name" type="text" formControlName="name"/>
+                <mat-error>Name is required</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Email" type="text" formControlName="email"/>
+                <mat-error *ngIf="registerForm.controls.email.errors?.required">Email is required</mat-error>
+                <mat-error *ngIf="registerForm.controls.email.errors?.pattern">Email is invalid</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Password" type="password" formControlName="password"/>
+                <mat-error *ngIf="registerForm.controls.password.errors?.required">Password is required</mat-error>
+                <mat-error *ngIf="registerForm.controls.password.errors?.minlength">Minimum length required is 8 characters</mat-error>
+            </mat-form-field>
         </mat-card-content>
-        <mat-card-action>
-                <button mat-raised-button color="primary" (click)="cancel()">Cancel</button>
+        <mat-card-action class="action-buttons">
+                <button mat-raised-button color="primary" [disabled]="registerForm.invalid" (click)="onSubmit()">
+                    Register
+                </button>
+                <button mat-raised-button color="primary" (click)="cancel()">
+                    Cancel
+                </button>
         </mat-card-action>
     </mat-card>
-
 </div>
 </body>
