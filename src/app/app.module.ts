@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { ErrorMessageDialogComponent } from './components/error-message-dialog/error-message-dialog.component';
 import { ExplanationViewComponent } from './components/explanation-view/explanation-view.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
@@ -31,6 +32,7 @@ import { SceneContainerComponent } from './components/scene-container/scene-cont
     LoginComponent,
     RegisterComponent,
     RoleListViewComponent,
+    ErrorMessageDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,11 +45,14 @@ import { SceneContainerComponent } from './components/scene-container/scene-cont
     HttpClientModule,
 
   ],
+  entryComponents: [
+    ErrorMessageDialogComponent
+  ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ],
   providers: [
-    ],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
