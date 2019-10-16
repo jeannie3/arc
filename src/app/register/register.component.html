@@ -44,6 +44,9 @@
                                             <input matInput placeholder="Confirm Password" type="password" formControlName="confirm_password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                                     </div>
                             </mat-form-field>
+                            <mat-error *ngIf = "registerForm.errors?.passwordsDoNotMatch">
+                                    Passwords do not match
+                            </mat-error>
                         </td>
                     </tr>
                     
