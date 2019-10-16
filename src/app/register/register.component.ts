@@ -25,14 +25,14 @@ export class RegisterComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.registerForm = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            email: ['', Validators.required],
-            password: ['', [Validators.required, Validators.minLength(6)]],
-            confirm_password: ['', [Validators.required, Validators.minLength(6)]]
-        }
-        //,matchPassword
-        );
+        this.registerForm =
+            this.formBuilder.group({
+                firstName: ['', Validators.required],
+                email: ['', Validators.required],
+                password: ['', [Validators.required, Validators.minLength(6)]],
+                confirm_password: ['', [Validators.required, Validators.minLength(6)]]},
+                {validators: matchPassword, updateOn: 'change'}
+            );
         
     }
 
@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
         this.submitted = true;
 
         // stop here if form is invalid
-        if (this.registerForm.invalid || this.f.password.value != this.f.confirm_password.value) {
+        if (this.registerForm.invalid) {
             return;
         }
 
