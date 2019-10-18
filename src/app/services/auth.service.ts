@@ -28,6 +28,8 @@ export class AuthService {
       message = 'Not found';
     } else if (errorResponse.status <= 599 && errorResponse.status >= 500) {
       message = 'Something went wrong with the server! Please try again another time';
+    } else if (errorResponse.status === 409) {
+      message = 'This email is already taken';
     } else {
       message = errorResponse.statusText;
     }
