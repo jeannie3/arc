@@ -8,7 +8,7 @@
         background: transparent;
     }
 
-.centeredBlueBox {margin: auto; border: 3px solid black; border-radius: 5px; padding: 10px; background-color: skyblue; width: 300px}
+.centeredBlueBox {margin: auto; border: 3px solid black; border-radius: 5px; padding: 10px; background-color: skyblue; width: 50%}
 
 .isolatedWhite {margin: 10px; text-align: center; background-color: white}
 
@@ -17,6 +17,15 @@
 .isolated{margin: 10px; text-align: center;}
 
 .bigText{font-size: 60px}
+
+button{
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+::ng-deep .mat-horizontal-stepper-header{
+    pointer-events: none !important;
+}
 
 
 body{background-color: azure}
