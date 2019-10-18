@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { AuthService } from '../services/auth.service';
-import { matchPassword } from '../validators/matchPassword';
+import { AuthService } from '../../services/auth.service';
+import { matchPassword } from '../../validators/matchPassword';
 //import { ErrorMessageDialogComponent } from './components/error-message-dialog/error-message-dialog.component';
 //import { MatDialog } from '@angular/material/dialog';
 
