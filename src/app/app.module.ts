@@ -43,7 +43,6 @@ import { SceneContainerComponent } from './components/scene-container/scene-cont
     FormsModule,
     MaterialModule,
     HttpClientModule,
-
   ],
   entryComponents: [
     ErrorMessageDialogComponent
