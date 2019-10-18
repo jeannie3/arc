@@ -12,7 +12,7 @@ export class ErrorMessageDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<ErrorMessageDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data) {}
 
-  onNoClick(): void {
+  close(): void {
     this.dialogRef.close();
   }
 
