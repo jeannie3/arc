@@ -2,7 +2,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
+import { ErrorMessageDialogComponent } from '../components/error-message-dialog/error-message-dialog.component';
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,6 +13,8 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
 
   private baseUrl = environment.baseUrl;
+
+  constructor(private http: HttpClient, private dialog: MatDialog) { }
 
   handleError = (errorResponse: HttpErrorResponse) => {
     let message = '';
@@ -24,17 +28,26 @@ export class AuthService {
       message = 'Not found';
     } else if (errorResponse.status <= 599 && errorResponse.status >= 500) {
       message = 'Something went wrong with the server! Please try again another time';
+    } else if (errorResponse.status === 409) {
+      message = 'This email is already taken';
     } else {
       message = errorResponse.statusText;
     }
 
     if (errorResponse.status !== 401 || localStorage.getItem('userInfo') === null) {
-      window.alert(message);
+      const dialogRef = this.dialog.open(ErrorMessageDialogComponent, {
+        data: {
+          errorMessage: message
+        }
+      });
+      document.getElementById('main-body').classList.add('blur');
+
+      dialogRef.afterClosed().subscribe(() => {
+        document.getElementById('main-body').classList.remove('blur');
+      });
     }
     return throwError(errorResponse);
   }
-
-  constructor(private http: HttpClient) { }
 
   login(userEmail: string, userPass: string): Observable<any> {
     const payload = {

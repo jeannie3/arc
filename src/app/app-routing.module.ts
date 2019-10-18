@@ -1,13 +1,11 @@
 import { RouterModule, Routes } from '@angular/router';
 
 import { ExplanationViewComponent } from './components/explanation-view/explanation-view.component';
+import { LoginComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
+import { RegisterComponent } from './components/register/register.component';
 import { RoleListViewComponent } from './components/role-list-view/role-list-view.component';
 import { SceneContainerComponent } from './components/scene-container/scene-container.component';
-
-
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
