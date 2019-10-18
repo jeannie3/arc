@@ -12,6 +12,7 @@
     <mat-step label="Achievements">
       <div><p>Woo, you earned random award!!</p></div>
       <div>
+        <button mat-raised-button color="primary" matStepperPrevious>Back</button>
         <button mat-raised-button color="primary" matStepperNext>Next</button>
       </div>
     </mat-step>
@@ -20,6 +21,7 @@
         <p>Continue Training</p>
       </div>
       <div>
+          <button mat-raised-button color="primary" matStepperPrevious>Back</button>
           <div *ngIf="success; then thenBlock else elseBlock"></div>
           <ng-template #thenBlock><button color="primary" mat-raised-button matStepperNext (click)="goToRoles()">Try different role</button></ng-template>
           <ng-template #elseBlock><button color="primary" mat-raised-button matStepperNext (click)="tryAgain()">Try again</button></ng-template>
