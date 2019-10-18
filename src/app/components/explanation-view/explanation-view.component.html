@@ -2,20 +2,28 @@
 <div class = "isolated">
 <h1 class="bigText">Cultural Humility Explanation</h1>
 </div>
-<mat-vertical-stepper class = "centeredBlueBox">
+<mat-horizontal-stepper class = "centeredBlueBox">
     <mat-step label="Explanation">
-      {{ currentScene.description }}
+      <div>{{ currentScene.description }}</div>
       <div>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-raised-button color="primary" matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="Achievements">
+      <div><p>Woo, you earned random award!!</p></div>
+      <div>
+        <button mat-raised-button color="primary" matStepperNext>Next</button>
       </div>
     </mat-step>
     <mat-step label="Continue">
-      Continue Training
+      <div>
+        <p>Continue Training</p>
+      </div>
       <div>
           <div *ngIf="success; then thenBlock else elseBlock"></div>
-          <ng-template #thenBlock><button mat-button matStepperNext>Try different role</button></ng-template>
-          <ng-template #elseBlock><button mat-button matStepperNext (click)="tryAgain()">Try again</button></ng-template>
+          <ng-template #thenBlock><button color="primary" mat-raised-button matStepperNext (click)="goToRoles()">Try different role</button></ng-template>
+          <ng-template #elseBlock><button color="primary" mat-raised-button matStepperNext (click)="tryAgain()">Try again</button></ng-template>
       </div>
     </mat-step>
-  </mat-vertical-stepper>
+  </mat-horizontal-stepper>
     </body>
