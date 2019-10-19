@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../../services/auth.service';
+import { EmailErrorStateMatcher } from 'src/app/error-state-matchers/email-error-state-matcher';
+import { PasswordErrorStateMatcher } from 'src/app/error-state-matchers/password-error-state-matcher';
 import { Router } from '@angular/router';
 import { matchEmail } from 'src/app/validators/matchEmail';
 import { matchPassword } from 'src/app/validators/matchPassword';
@@ -12,6 +14,8 @@ import { matchPassword } from 'src/app/validators/matchPassword';
 })
 export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
+    emailErrorMatcher: EmailErrorStateMatcher;
+    passwordErrorMatcher: PasswordErrorStateMatcher;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -31,6 +35,9 @@ export class RegisterComponent implements OnInit {
             confirm_password: ['']},
             { validators: [matchPassword, matchEmail], updateOn: 'change' }
         );
+
+        this.emailErrorMatcher = new EmailErrorStateMatcher();
+        this.passwordErrorMatcher = new PasswordErrorStateMatcher();
     }
 
     onSubmit() {
