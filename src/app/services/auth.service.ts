@@ -79,6 +79,18 @@ export class AuthService {
           email: userEmail,
           pass: userPass
         }));
+
+        const dialogRef = this.dialog.open(ErrorMessageDialogComponent, {
+          data: {
+            errorMessage: 'You have successfully created an account'
+          }
+        });
+        document.getElementById('main-body').classList.add('blur');
+
+        dialogRef.afterClosed().subscribe(() => {
+          document.getElementById('main-body').classList.remove('blur');
+        });
+
       }),
       catchError(this.handleError)
     );
