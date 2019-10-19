@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { matchEmail } from 'src/app/validators/matchEmail';
 import { matchPassword } from 'src/app/validators/matchPassword';
 
 @Component({
@@ -25,9 +26,10 @@ export class RegisterComponent implements OnInit {
         this.registerForm = this.formBuilder.group({
             name: ['', Validators.required],
             email: ['', [Validators.required, Validators.pattern(emailRegexValidator)]],
+            confirm_email: [''],
             password: ['', [Validators.required, Validators.minLength(8)]],
-            confirm_password: ['', [Validators.required, Validators.minLength(8)]]},
-            { validators: matchPassword, updateOn: 'change' }
+            confirm_password: ['']},
+            { validators: [matchPassword, matchEmail], updateOn: 'change' }
         );
     }
 
@@ -35,7 +37,6 @@ export class RegisterComponent implements OnInit {
         this.authenticationService.register(
             this.registerForm.value.name, this.registerForm.value.email.toLowerCase(), this.registerForm.value.password
         ).subscribe(() => {
-            // TODO: show that account was open successfully (probably easier in auth service)
             this.router.navigate(['/role']);
         });
     }

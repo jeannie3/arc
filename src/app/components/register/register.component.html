@@ -15,6 +15,13 @@
                 <mat-error *ngIf="registerForm.controls.email.errors?.pattern">Email is invalid</mat-error>
             </mat-form-field>
             <mat-form-field>
+                <input matInput placeholder="Confirm Email" type="text" formControlName="confirm_email"/>
+            </mat-form-field>
+            <!-- TODO: Move this mat-error into confirm_email mat-form-field -->
+            <mat-error *ngIf = "registerForm.errors?.emailsDoNotMatch">
+                Emails do not match
+            </mat-error>
+            <mat-form-field>
                 <input matInput placeholder="Password" type="password" formControlName="password"/>
                 <mat-error *ngIf="registerForm.controls.password.errors?.required">Password is required</mat-error>
                 <mat-error *ngIf="registerForm.controls.password.errors?.minlength">Minimum length required is 8 characters</mat-error>
