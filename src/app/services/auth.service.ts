@@ -2,9 +2,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-import { ErrorMessageDialogComponent } from '../components/error-message-dialog/error-message-dialog.component';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MessageDialogComponent } from '../components/message-dialog/message-dialog.component';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -17,27 +17,29 @@ export class AuthService {
   constructor(private http: HttpClient, private dialog: MatDialog) { }
 
   handleError = (errorResponse: HttpErrorResponse) => {
-    let message = '';
+    let errorMessage = '';
     if (errorResponse.status === 401 && localStorage.getItem('userInfo') !== null) {
       this.renewAccessToken();
     } else if (errorResponse.status === 401 && localStorage.getItem('userInfo') === null) {
-      message = 'You need to login beforehand';
+      errorMessage = 'You need to login beforehand';
     } else if (errorResponse.status === 403 || errorResponse.status === 400) {
-      message = 'Invalid email or password';
+      errorMessage = 'Invalid email or password';
     } else if (errorResponse.status === 404) {
-      message = 'Not found';
+      errorMessage = 'Not found';
     } else if (errorResponse.status <= 599 && errorResponse.status >= 500) {
-      message = 'Something went wrong with the server! Please try again another time';
+      errorMessage = 'Something went wrong with the server! Please try again another time';
     } else if (errorResponse.status === 409) {
-      message = 'This email is already taken';
+      errorMessage = 'This email is already taken';
     } else {
-      message = errorResponse.statusText;
+      errorMessage = errorResponse.statusText;
     }
 
     if (errorResponse.status !== 401 || localStorage.getItem('userInfo') === null) {
-      const dialogRef = this.dialog.open(ErrorMessageDialogComponent, {
+      const dialogRef = this.dialog.open(MessageDialogComponent, {
         data: {
-          errorMessage: message
+          title: 'Oops',
+          message: errorMessage,
+          buttonText: 'Ok'
         }
       });
       document.getElementById('main-body').classList.add('blur');
@@ -80,9 +82,11 @@ export class AuthService {
           pass: userPass
         }));
 
-        const dialogRef = this.dialog.open(ErrorMessageDialogComponent, {
+        const dialogRef = this.dialog.open(MessageDialogComponent, {
           data: {
-            errorMessage: 'You have successfully created an account'
+            title: 'Success!',
+            message: 'You have successfully created an account',
+            buttonText: 'Ok'
           }
         });
         document.getElementById('main-body').classList.add('blur');

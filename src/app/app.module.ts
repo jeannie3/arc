@@ -5,12 +5,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorMessageDialogComponent } from './components/error-message-dialog/error-message-dialog.component';
 import { ExplanationViewComponent } from './components/explanation-view/explanation-view.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { MaterialModule } from './material.module';
+import { MessageDialogComponent } from './components/message-dialog/message-dialog.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RoleListViewComponent } from './components/role-list-view/role-list-view.component';
@@ -31,7 +31,7 @@ import { SceneContainerComponent } from './components/scene-container/scene-cont
     ExplanationViewComponent,
     LoginComponent,
     RoleListViewComponent,
-    ErrorMessageDialogComponent,
+    MessageDialogComponent,
     ForgotPasswordComponent,
   ],
   imports: [
@@ -45,7 +45,7 @@ import { SceneContainerComponent } from './components/scene-container/scene-cont
     HttpClientModule,
   ],
   entryComponents: [
-    ErrorMessageDialogComponent
+    MessageDialogComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
