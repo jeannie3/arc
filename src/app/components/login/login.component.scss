@@ -9,6 +9,14 @@ body {
     background-color: azure
 }
 
+.mat-card-container {
+    display: flex;
+}
+
+mat-divider {
+    margin: 30px;
+}
+
 .flex-col {
     display: flex;
     flex-direction: column;
@@ -17,9 +25,10 @@ body {
 .action-buttons {
     button {
         margin: 10px;
+        float: right;
     }
 }
 
 .mat-form-field {
-    margin: 5px;
+    margin: 3px;
 }

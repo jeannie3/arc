@@ -7,12 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorMessageDialogComponent } from './components/error-message-dialog/error-message-dialog.component';
 import { ExplanationViewComponent } from './components/explanation-view/explanation-view.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { MaterialModule } from './material.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RegisterComponent } from './components/register/register.component';
 import { RoleListViewComponent } from './components/role-list-view/role-list-view.component';
 import { ScenarioDetailComponent } from './components/scenario-detail/scenario-detail.component';
 import { ScenarioListViewComponent } from './components/scenario-list-view/scenario-list-view.component';
@@ -30,9 +30,9 @@ import { SceneContainerComponent } from './components/scene-container/scene-cont
     ScenarioListViewComponent,
     ExplanationViewComponent,
     LoginComponent,
-    RegisterComponent,
     RoleListViewComponent,
     ErrorMessageDialogComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
