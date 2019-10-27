@@ -38,7 +38,7 @@ export class ForgotPasswordComponent implements OnInit {
       this.router.navigate(['/login']);
     });
 
-    // TODO:send reset password link to email
+    // TODO: send email with link to reset the password
   }
 
   cancel() {
