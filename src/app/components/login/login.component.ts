@@ -40,9 +40,8 @@ export class LoginComponent implements OnInit {
             email: ['', [Validators.required, Validators.pattern(emailRegexValidator)]],
             confirm_email: [''],
             password: ['', [Validators.required, Validators.minLength(8)]],
-            confirm_password: ['']},
-            { validators: [matchPassword, matchEmail], updateOn: 'change' }
-        );
+            confirm_password: ['']
+        }, { validators: [matchPassword, matchEmail], updateOn: 'change' });
 
         this.emailErrorMatcher = new EmailErrorStateMatcher();
         this.passwordErrorMatcher = new PasswordErrorStateMatcher();
