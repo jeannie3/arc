@@ -30,17 +30,29 @@ export class SceneContainerComponent implements OnInit {
     }
   }
 
+  createProgress() {
+    this.progress = new Progress();
+    this.progress.roleId = this.currentScene.roleId;
+    this.progress.sceneId = this.currentScene.id;
+  }
+
   constructor(private router: Router, private scenarioService: ScenarioService, private _Activatedroute: ActivatedRoute) {
     this._Activatedroute.paramMap.subscribe(params => {
       this.userId = params.get('userId');
       this.roleId = params.get('roleId');
       scenarioService.getScenes(this.roleId).subscribe(scenes => {
         this.allScenesForRole = scenes;
-
         const firstSceneId = params.get('sceneId');
         this.currentScene = this.allScenesForRole.find(scene => +scene.id === +firstSceneId);
-
         console.log(this.currentScene)
+
+        scenarioService.getProgress(this.userId).subscribe(progress => {
+          if (progress.length === 0) {
+            this.createProgress();
+          } else {
+            this.progress = progress[0];
+          }
+        });
 
         scenarioService.getAnswerChoices(this.currentScene.id).subscribe(answers => {
           this.answerChoices = answers;
@@ -51,3 +63,4 @@ export class SceneContainerComponent implements OnInit {
 
   ngOnInit() { }
 }
+this.progress = new Progress();

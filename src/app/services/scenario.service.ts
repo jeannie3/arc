@@ -74,8 +74,8 @@ export class ScenarioService {
       )
   }
 
-  getProgress(userId: string): Observable<Progress> {
-    return this.http.get<Progress>(this.baseUrl + '/proress?userId=eq.' + userId, this.httpOptions)
+  getProgress(userId: string): Observable<Progress[]> {
+    return this.http.get<Progress[]>(this.baseUrl + '/proress?userId=eq.' + userId, this.httpOptions)
       .pipe(
         catchError(this.authService.handleError)
       )
