@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.authenticationService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(() => {
       const userId = JSON.parse(localStorage.getItem('userInfo')).id;
-      this.router.navigate([userId, '/role']);
+      this.router.navigate([userId + '/role']);
     });
   }
 
