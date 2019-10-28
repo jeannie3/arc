@@ -13,30 +13,31 @@ export class RoleListViewComponent implements OnInit {
   scenarioTitle: string;
   scenarioDescription: string;
   formRoles: FormArray;
-  
 
-  constructor(private router: Router,private formBuilder: FormBuilder, private scenarioService: ScenarioService) { }
+
+  constructor(private router: Router, private formBuilder: FormBuilder, private scenarioService: ScenarioService) { }
 
   ngOnInit() {
-    this.scenarioService.getScenario('1').subscribe( result =>{
+    this.scenarioService.getScenario('1').subscribe(result => {
       this.scenarioTitle = result[0].title;
       this.scenarioDescription = result[0].description;
     });
     this.formRoles = new FormArray([]);
-    this.scenarioService.getRoles('1').subscribe( roles => {
+    this.scenarioService.getRoles('1').subscribe(roles => {
       roles.forEach(role => {
         this.formRoles.push(this.formBuilder.group({
-            id: role.id,
-            name: role.name,
-            first_scene_id: role.first_scene_id
+          id: role.id,
+          name: role.name,
+          first_scene_id: role.first_scene_id
         }));
       });
     });
   }
 
-    
-  chooseRole(role){
-      this.router.navigate([role.id,'scene',role.first_scene_id]);
+
+  chooseRole(role) {
+    const userId = JSON.parse(localStorage.getItem('userInfo')).id;
+    this.router.navigate([userId, role.id, 'scene', role.first_scene_id]);
   }
 
 }

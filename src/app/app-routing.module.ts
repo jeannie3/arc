@@ -14,9 +14,9 @@ const routes: Routes = [
 
   // { path: '', component: ScenarioListViewComponent },
   // { path: 'scenario/:id', component: ScenarioDetailComponent},
-  { path: ':roleId/scene/:sceneId', component: SceneContainerComponent },
-  { path: ':roleId/explanation/:sceneId', component: ExplanationViewComponent},
-  { path: 'role', component: RoleListViewComponent},
+  { path: ':userId/:roleId/scene/:sceneId', component: SceneContainerComponent },
+  { path: ':userId/:roleId/explanation/:sceneId', component: ExplanationViewComponent },
+  { path: ':userId/role', component: RoleListViewComponent },
   { path: '**', redirectTo: 'login' }
 ];
 

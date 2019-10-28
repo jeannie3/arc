@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnswerChoice } from 'src/app/models/answer-choice';
 import { ScenarioService } from '../../services/scenario.service';
 import { Scene, SceneType } from '../../models/scene';
+import { Progress } from 'src/app/models/progress';
 
 @Component({
   selector: 'app-scene-container',
@@ -11,24 +12,27 @@ import { Scene, SceneType } from '../../models/scene';
   styleUrls: ['./scene-container.component.scss']
 })
 export class SceneContainerComponent implements OnInit {
-  currentScene: Scene; 
+  currentScene: Scene;
   answerChoices: AnswerChoice[]
   allScenesForRole: Scene[]
   roleId: string;
+  userId: string;
+  progress: Progress;
 
   updateScene(nextScene: string) {
     // if the next scene is -1, the current scene is the last scene
-    this.currentScene = this.allScenesForRole.find(scene => scene.id === nextScene);
+    this.currentScene = this.allScenesForRole.find(scene => scene.id === nextScene)
 
     if (this.currentScene.type === SceneType.FB_POSITIVE || this.currentScene.type === SceneType.FB_NEGATIVE) {
-      this.router.navigate([this.roleId + '/explanation/' + nextScene]);
+      this.router.navigate([this.userId, this.roleId + '/explanation/' + nextScene]);
     } else {
-      this.router.navigate([this.roleId + '/scene/' + nextScene]);
+      this.router.navigate([this.userId, this.roleId + '/scene/' + nextScene]);
     }
   }
 
   constructor(private router: Router, private scenarioService: ScenarioService, private _Activatedroute: ActivatedRoute) {
     this._Activatedroute.paramMap.subscribe(params => {
+      this.userId = params.get('userId');
       this.roleId = params.get('roleId');
       scenarioService.getScenes(this.roleId).subscribe(scenes => {
         this.allScenesForRole = scenes;
