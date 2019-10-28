@@ -1,7 +1,7 @@
 export class Progress {
-    id: string;
-    userId: string;
-    roleId: string;
-    sceneId: string;
-    isCompleted: boolean;
+  id: string;
+  user_id: string;
+  role_id: string;
+  scene_id: string;
+  is_completed: boolean;
 }

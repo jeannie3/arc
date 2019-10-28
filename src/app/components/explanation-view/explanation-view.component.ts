@@ -50,13 +50,13 @@ export class ExplanationViewComponent implements OnInit {
       });
 
       if (this.firstSceneId) {
-        this.router.navigate([this.userId, this.roleId, 'scene', this.firstSceneId]);
+        this.router.navigate([this.userId + '/' + this.roleId + '/scene/' + this.firstSceneId]);
       } else {
         console.log("For some reason the first scene for the given role was not found");
       }
     });
   }
   goToRoles() {
-    this.router.navigate([this.userId, '/role']);
+    this.router.navigate([this.userId + '/role']);
   }
 }
