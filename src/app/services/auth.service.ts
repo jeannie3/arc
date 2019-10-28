@@ -6,6 +6,7 @@ import { ErrorMessageDialogComponent } from '../components/error-message-dialog/
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -59,7 +60,8 @@ export class AuthService {
         localStorage.setItem('accessToken', res[0].token);
         localStorage.setItem('userInfo', JSON.stringify({
           email: userEmail,
-          pass: userPass
+          pass: userPass,
+          id: jwt_decode(res[0].token).id
         }));
       }),
       catchError(this.handleError)
@@ -77,7 +79,8 @@ export class AuthService {
         localStorage.setItem('accessToken', res[0].token);
         localStorage.setItem('userInfo', JSON.stringify({
           email: userEmail,
-          pass: userPass
+          pass: userPass,
+          id: jwt_decode(res[0].token).id
         }));
 
         const dialogRef = this.dialog.open(ErrorMessageDialogComponent, {
