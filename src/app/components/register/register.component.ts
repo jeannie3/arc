@@ -9,46 +9,48 @@ import { matchEmail } from 'src/app/validators/matchEmail';
 import { matchPassword } from 'src/app/validators/matchPassword';
 
 @Component({
-    templateUrl: 'register.component.html',
-    styleUrls: ['./register.component.scss']
+  templateUrl: 'register.component.html',
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-    registerForm: FormGroup;
-    emailErrorMatcher: EmailErrorStateMatcher;
-    passwordErrorMatcher: PasswordErrorStateMatcher;
+  registerForm: FormGroup;
+  emailErrorMatcher: EmailErrorStateMatcher;
+  passwordErrorMatcher: PasswordErrorStateMatcher;
 
-    constructor(
-        private formBuilder: FormBuilder,
-        private router: Router,
-        private authenticationService: AuthService,
-    ) {
-    }
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authenticationService: AuthService,
+  ) {
+  }
 
-    ngOnInit() {
-        const emailRegexValidator = '[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+';
+  ngOnInit() {
+    const emailRegexValidator = '[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+';
 
-        this.registerForm = this.formBuilder.group({
-            name: ['', Validators.required],
-            email: ['', [Validators.required, Validators.pattern(emailRegexValidator)]],
-            confirm_email: [''],
-            password: ['', [Validators.required, Validators.minLength(8)]],
-            confirm_password: ['']},
-            { validators: [matchPassword, matchEmail], updateOn: 'change' }
-        );
+    this.registerForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.pattern(emailRegexValidator)]],
+      confirm_email: [''],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      confirm_password: ['']
+    },
+      { validators: [matchPassword, matchEmail], updateOn: 'change' }
+    );
 
-        this.emailErrorMatcher = new EmailErrorStateMatcher();
-        this.passwordErrorMatcher = new PasswordErrorStateMatcher();
-    }
+    this.emailErrorMatcher = new EmailErrorStateMatcher();
+    this.passwordErrorMatcher = new PasswordErrorStateMatcher();
+  }
 
-    onSubmit() {
-        this.authenticationService.register(
-            this.registerForm.value.name, this.registerForm.value.email.toLowerCase(), this.registerForm.value.password
-        ).subscribe(() => {
-            this.router.navigate(['/role']);
-        });
-    }
+  onSubmit() {
+    this.authenticationService.register(
+      this.registerForm.value.name, this.registerForm.value.email.toLowerCase(), this.registerForm.value.password
+    ).subscribe(() => {
+      const userId = JSON.parse(localStorage.getItem('userInfo')).id;
+      this.router.navigate([userId, '/role']);
+    });
+  }
 
-    cancel() {
-        this.router.navigate(['/login']);
-    }
+  cancel() {
+    this.router.navigate(['/login']);
+  }
 }
