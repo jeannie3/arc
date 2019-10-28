@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Role } from '../models/role';
 import { Scenario } from '../models/scenario';
 import { Scene } from '../models/scene';
+import { Progress } from '../models/progress';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
@@ -16,9 +17,15 @@ import { environment } from 'src/environments/environment';
 export class ScenarioService {
 
   private baseUrl = environment.baseUrl;
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+    })
+  };
 
   constructor(private http: HttpClient,
-              private authService: AuthService) { }
+    private authService: AuthService) { }
 
   getScenario(scenarioId: string): Observable<Scenario> {
     return this.http.get<Scenario>(this.baseUrl + '/scenarios?id=eq.' + scenarioId, {
@@ -58,5 +65,19 @@ export class ScenarioService {
     }).pipe(
       catchError(this.authService.handleError)
     );
+  }
+
+  saveProgress(progress: Progress): void {
+    this.http.post(this.baseUrl + '/progress', progress, this.httpOptions)
+      .pipe(
+        catchError(this.authService.handleError)
+      )
+  }
+
+  getProgress(userId: string): Observable<Progress> {
+    return this.http.get<Progress>(this.baseUrl + '/proress?userId=eq.' + userId, this.httpOptions)
+      .pipe(
+        catchError(this.authService.handleError)
+      )
   }
 }
