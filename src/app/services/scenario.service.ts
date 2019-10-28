@@ -67,15 +67,23 @@ export class ScenarioService {
     );
   }
 
-  saveProgress(progress: Progress): void {
-    this.http.post(this.baseUrl + '/progress', progress, this.httpOptions)
-      .pipe(
-        catchError(this.authService.handleError)
-      )
+  saveProgress(progress: Progress, isNew: boolean): void {
+    if (isNew) {
+      this.http.post(this.baseUrl + '/progress', progress, this.httpOptions)
+        .pipe(
+          catchError(this.authService.handleError)
+        )
+    } else {
+      this.http.put(this.baseUrl + '/progress', progress, this.httpOptions)
+        .pipe(
+          catchError(this.authService.handleError)
+        )
+    }
   }
 
-  getProgress(userId: string): Observable<Progress[]> {
-    return this.http.get<Progress[]>(this.baseUrl + '/proress?userId=eq.' + userId, this.httpOptions)
+  getProgress(userId: string, roleId: string): Observable<Progress[]> {
+    const filterQuery = '?and=(user_id.eq.' + userId + ',role_id.eq.' + roleId + ')';
+    return this.http.get<Progress[]>(this.baseUrl + '/progress' + filterQuery, this.httpOptions)
       .pipe(
         catchError(this.authService.handleError)
       )
