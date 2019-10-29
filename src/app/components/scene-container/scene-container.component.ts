@@ -25,7 +25,6 @@ export class SceneContainerComponent implements OnInit {
     this.currentScene = this.allScenesForRole.find(scene => scene.id === nextScene)
 
     this.scenarioService.getProgress(this.userId, this.roleId).subscribe(progress => {
-      console.log(progress);
       if (progress.length === 0) {
         this.progress = new Progress();
         this.progress.user_id = this.userId;
@@ -37,17 +36,14 @@ export class SceneContainerComponent implements OnInit {
         this.progress = progress[0];
         this.isNew = false;
       }
-      console.log("save progress " + JSON.stringify(this.progress));
       this.scenarioService.saveProgress(this.progress, this.isNew).subscribe(success => {
-        console.log("successfully save progress " + JSON.stringify(success));
+        if (this.currentScene.type === SceneType.FB_POSITIVE || this.currentScene.type === SceneType.FB_NEGATIVE) {
+          this.router.navigate([this.userId + '/roles/' + this.roleId + '/explanation/' + nextScene]);
+        } else {
+          this.router.navigate([this.userId + '/roles/' + this.roleId + '/scenes/' + nextScene]);
+        }
       });
     });
-
-    if (this.currentScene.type === SceneType.FB_POSITIVE || this.currentScene.type === SceneType.FB_NEGATIVE) {
-      this.router.navigate([this.userId + '/' + this.roleId + '/explanation/' + nextScene]);
-    } else {
-      this.router.navigate([this.userId + '/' + this.roleId + '/scene/' + nextScene]);
-    }
   }
 
   constructor(private router: Router, private scenarioService: ScenarioService, private _Activatedroute: ActivatedRoute) {
@@ -59,8 +55,6 @@ export class SceneContainerComponent implements OnInit {
         this.allScenesForRole = scenes;
         const firstSceneId = params.get('sceneId');
         this.currentScene = this.allScenesForRole.find(scene => +scene.id === +firstSceneId);
-        console.log(this.currentScene)
-
         scenarioService.getAnswerChoices(this.currentScene.id).subscribe(answers => {
           this.answerChoices = answers;
         });

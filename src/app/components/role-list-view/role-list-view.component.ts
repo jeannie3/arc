@@ -37,7 +37,7 @@ export class RoleListViewComponent implements OnInit {
 
   chooseRole(role) {
     const userId = JSON.parse(localStorage.getItem('userInfo')).id;
-    this.router.navigate([userId, role.id, 'scene', role.first_scene_id]);
+    this.router.navigate([userId, 'roles', role.id, 'scenes', role.first_scene_id]);
   }
 
 }

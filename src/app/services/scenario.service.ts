@@ -69,13 +69,11 @@ export class ScenarioService {
 
   saveProgress(progress: Progress, isNew: boolean): Observable<Progress[]> {
     if (isNew) {
-      console.log("post new progress");
       return this.http.post<Progress[]>(this.baseUrl + '/progress', progress, this.httpOptions)
         .pipe(
           catchError(this.authService.handleError)
         )
     } else {
-      console.log("update current progress");
       return this.http.put<Progress[]>(this.baseUrl + '/progress?id=eq.' + progress.id, progress, this.httpOptions)
         .pipe(
           catchError(this.authService.handleError)

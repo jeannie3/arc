@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
       this.registerForm.value.name, this.registerForm.value.email.toLowerCase(), this.registerForm.value.password
     ).subscribe(() => {
       const userId = JSON.parse(localStorage.getItem('userInfo')).id;
-      this.router.navigate([userId + '/role']);
+      this.router.navigate([userId + '/roles']);
     });
   }
 
