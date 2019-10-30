@@ -4,6 +4,7 @@ import { AnswerChoice } from '../models/answer-choice';
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Progress } from '../models/progress';
 import { Role } from '../models/role';
 import { Scenario } from '../models/scenario';
 import { Scene } from '../models/scene';
@@ -52,6 +53,16 @@ export class ScenarioService {
 
   getAnswerChoices(sceneId: string): Observable<AnswerChoice[]> {
     return this.http.get<AnswerChoice[]>(this.baseUrl + '/answer_choices?current_scene_id=eq.' + sceneId, {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+      })
+    }).pipe(
+      catchError(this.authService.handleError)
+    );
+  }
+
+  getUncompletedProgress(userId: string): Observable<Progress[]> {
+    return this.http.get<Progress[]>(this.baseUrl + '/progress?and=(user_id.eq.' + userId + ',is_completed.eq.false)', {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + localStorage.getItem('accessToken')
       })
