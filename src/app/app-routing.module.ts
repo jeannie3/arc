@@ -6,6 +6,9 @@ import { NgModule } from '@angular/core';
 import { RegisterComponent } from './components/register/register.component';
 import { RoleListViewComponent } from './components/role-list-view/role-list-view.component';
 import { SceneContainerComponent } from './components/scene-container/scene-container.component';
+import { UserSettingsEditComponent } from './components/user-settings-edit/user-settings-edit.component';
+import { UserSettingsComponent } from './components/user-settings/user-settings.component';
+
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -17,6 +20,8 @@ const routes: Routes = [
   { path: ':roleId/scene/:sceneId', component: SceneContainerComponent },
   { path: ':roleId/explanation/:sceneId', component: ExplanationViewComponent},
   { path: 'role', component: RoleListViewComponent},
+  { path: 'settings', component: UserSettingsComponent},
+  { path: 'settings/edit', component: UserSettingsEditComponent},
   { path: '**', redirectTo: 'login' }
 ];
 
