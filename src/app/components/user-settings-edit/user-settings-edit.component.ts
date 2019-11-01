@@ -13,8 +13,9 @@ import { Router } from '@angular/router';
     // formRoles: FormArray;
     
   
-    // constructor(private router: Router,private formBuilder: FormBuilder, private scenarioService: ScenarioService) { }
-  
+    constructor(private router: Router) {//,private formBuilder: FormBuilder, private scenarioService: ScenarioService) { }
+    }
+
 	ngOnInit() {
     //   this.scenarioService.getScenario('1').subscribe( result =>{
     //     this.scenarioTitle = result[0].title;
@@ -30,5 +31,9 @@ import { Router } from '@angular/router';
     //       }));
     //     });
     //   });
-	 }
-	}
+    }
+
+    onCancel() {
+        this.router.navigate(['/settings'])
+    }
+}

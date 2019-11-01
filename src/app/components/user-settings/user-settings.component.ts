@@ -14,8 +14,9 @@ import { Router } from '@angular/router';
     // formRoles: FormArray;
     
   
-    // constructor(private router: Router,private formBuilder: FormBuilder, private scenarioService: ScenarioService) { }
-  
+    constructor(private router: Router) {	
+	}
+
 	ngOnInit() {
     //   this.scenarioService.getScenario('1').subscribe( result =>{
     //     this.scenarioTitle = result[0].title;
@@ -31,5 +32,9 @@ import { Router } from '@angular/router';
     //       }));
     //     });
     //   });
-	 }
 	}
+
+	onEdit() {
+		this.router.navigate(['/settings/edit'])
+	}
+}
