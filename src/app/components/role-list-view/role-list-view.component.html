@@ -5,7 +5,7 @@
 <p class="veryIsolated">{{scenarioDescription}}</p>
 <div class = "isolatedBlueBox">
 <div class = "isolatedWhite" *ngFor="let role of formRoles.controls">
-<button mat-raised-button (click)="chooseRole(role.value)">
+<button mat-raised-button (click)="chooseRole(role.value)" id="roles">
     {{role.get('name').value}}
 </button>
 </div>

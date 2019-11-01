@@ -6,9 +6,10 @@
         font-size: 100%;
         vertical-align: baseline;
         background: transparent;
+        
     }
 
-.centeredBlueBox {margin: auto; border: 3px solid black; border-radius: 5px; padding: 10px; background-color: skyblue; width: 50%}
+.centeredBlueBox {margin: auto; border: 3px solid black; border-radius: 5px; padding: 10px; background-color: white; width: 50%}
 
 .isolatedWhite {margin: 10px; text-align: center; background-color: white}
 
@@ -21,6 +22,29 @@
 button{
     margin-top: 5px;
     margin-right: 10px;
+
+}
+
+#next1{
+  width:100%;
+}
+
+#back1{
+  width:280px;
+  padding:0px;
+}
+
+#next2{
+   width:280px;
+}
+
+#back2{
+  width:280px;
+  padding:0px;
+}
+
+#gotry{
+  width:280px;
 }
 
 ::ng-deep .mat-horizontal-stepper-header{
@@ -28,4 +52,4 @@ button{
 }
 
 
-body{background-color: azure}
+body{background-color: #f3f3f3; height:100%}
