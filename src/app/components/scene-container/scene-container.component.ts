@@ -26,6 +26,14 @@ export class SceneContainerComponent implements OnInit {
       this.router.navigate([this.roleId + '/scene/' + nextScene]);
     }
   }
+  
+  onRestart(){
+    this.router.navigate([this.roleId + '/scene/1']);
+  }
+  
+  onExit(){
+    this.router.navigate(['/role']);
+  }
 
   constructor(private router: Router, private scenarioService: ScenarioService, private _Activatedroute: ActivatedRoute) {
     this._Activatedroute.paramMap.subscribe(params => {
