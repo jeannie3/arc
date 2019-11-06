@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorMessageDialogComponent } from './components/error-message-dialog/error-message-dialog.component';
+import { PauseDialogComponent } from './components/pause-dialog/pause-dialog.component';
 import { ExplanationViewComponent } from './components/explanation-view/explanation-view.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
@@ -33,6 +34,7 @@ import { SceneContainerComponent } from './components/scene-container/scene-cont
     RegisterComponent,
     RoleListViewComponent,
     ErrorMessageDialogComponent,
+    PauseDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { SceneContainerComponent } from './components/scene-container/scene-cont
     HttpClientModule,
   ],
   entryComponents: [
-    ErrorMessageDialogComponent
+    ErrorMessageDialogComponent,
+    PauseDialogComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

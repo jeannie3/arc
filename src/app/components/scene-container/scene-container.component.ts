@@ -1,9 +1,13 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 import { AnswerChoice } from 'src/app/models/answer-choice';
 import { ScenarioService } from '../../services/scenario.service';
 import { Scene, SceneType } from '../../models/scene';
+import { PauseDialogComponent } from '..//pause-dialog/pause-dialog.component';
+
+
 
 @Component({
   selector: 'app-scene-container',
@@ -27,21 +31,13 @@ export class SceneContainerComponent implements OnInit {
     }
   }
   
-  onRestart(){
-    this.scenarioService.getRoles('1').subscribe( roles => {
-      roles.forEach(role => {
-        if(this.roleId == role.id){
-            this.router.navigate([this.roleId + '/scene/' + role.first_scene_id]);
-        }
-      });
-    });
-  }
-  
-  onExit(){
-    this.router.navigate(['/role']);
+  onPause(){
+    let dialogRef = this.dialog.open(PauseDialogComponent,{data: {
+          roleId: this.roleId
+        }});
   }
 
-  constructor(private router: Router, private scenarioService: ScenarioService, private _Activatedroute: ActivatedRoute) {
+  constructor(private dialog: MatDialog, private router: Router, private scenarioService: ScenarioService, private _Activatedroute: ActivatedRoute) {
     this._Activatedroute.paramMap.subscribe(params => {
       this.roleId = params.get('roleId');
       scenarioService.getScenes(this.roleId).subscribe(scenes => {
