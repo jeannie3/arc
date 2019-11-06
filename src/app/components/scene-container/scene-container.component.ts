@@ -28,7 +28,13 @@ export class SceneContainerComponent implements OnInit {
   }
   
   onRestart(){
-    this.router.navigate([this.roleId + '/scene/1']);
+    this.scenarioService.getRoles('1').subscribe( roles => {
+      roles.forEach(role => {
+        if(this.roleId == role.id){
+            this.router.navigate([this.roleId + '/scene/' + role.first_scene_id]);
+        }
+      });
+    });
   }
   
   onExit(){
