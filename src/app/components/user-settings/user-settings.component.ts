@@ -10,28 +10,16 @@ import { Router } from '@angular/router';
     styleUrls: ['./user-settings.component.scss']
   })
   export class UserSettingsComponent implements OnInit {
-    // scenarioDescription: string;
-    // formRoles: FormArray;
+    email:string
     
   
     constructor(private router: Router) {	
+      const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+      this.email = userInfo.email
 	}
 
 	ngOnInit() {
-    //   this.scenarioService.getScenario('1').subscribe( result =>{
-    //     this.scenarioTitle = result[0].title;
-    //     this.scenarioDescription = result[0].description;
-    //   });
-    //   this.formRoles = new FormArray([]);
-    //   this.scenarioService.getRoles('1').subscribe( roles => {
-    //     roles.forEach(role => {
-    //       this.formRoles.push(this.formBuilder.group({
-    //           id: role.id,
-    //           name: role.name,
-    //           first_scene_id: role.first_scene_id
-    //       }));
-    //     });
-    //   });
+    
 	}
 
 	onEdit() {
