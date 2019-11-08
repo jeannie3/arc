@@ -6,11 +6,17 @@
         font-size: 100%;
         vertical-align: baseline;
         background: transparent;
+
     }
 
-.isolatedBlueBox {margin: 20px; text-align: center; border: 3px solid black; border-radius: 5px; padding: 10px; background-color: skyblue}
+.isolatedBlueBox {margin: 20px; text-align: center; border: 3px solid black; border-radius: 5px; padding: 10px; background-color: white}
 
-.isolatedWhite {margin: 10px; text-align: center; background-color: white; display:inline-block}
+.isolatedWhite {margin: 10px; text-align: center; background-color: #3f51b5; display:inline-block; width:45%}
+
+#roles{
+  color:white;
+    width:100%;
+}
 
 .veryIsolated{margin: 30px;}
 
@@ -18,14 +24,4 @@
 
 .bigText{font-size: 60px}
 
-body{background-color: azure}
-
-.mat-icon {
-    font-size: 50px;
-  }
-
-.settingsButton {
-    position: absolute;
-    top: 5px;
-    right: 20px;
-}
+body{background-color: #d3d3d3}

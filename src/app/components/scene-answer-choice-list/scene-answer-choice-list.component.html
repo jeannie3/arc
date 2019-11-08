@@ -1,6 +1,6 @@
 <h2>Answer Choices:</h2>
 <ul class="choices">
-  <li *ngFor="let choice of answerChoices">
-    <button (click)="updateScene(choice.next_scene_id)"><span class="choice"> {{ choice.text }} </span>. Next Scene: {{ choice.next_scene_id }}</button>
+  <li *ngFor="let choice of answerChoices" style="list-style:none;">
+    <button mat-raised-button color="primary" id="choice" (click)="updateScene(choice.next_scene_id)" style="white-space: normal;margin: 5px;"><span class="choice"> {{ choice.text }} </span>. Next Scene: {{ choice.next_scene_id }}</button>
   </li>
 </ul>

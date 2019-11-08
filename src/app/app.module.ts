@@ -8,12 +8,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorMessageDialogComponent } from './components/error-message-dialog/error-message-dialog.component';
 import { PauseDialogComponent } from './components/pause-dialog/pause-dialog.component';
 import { ExplanationViewComponent } from './components/explanation-view/explanation-view.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { MaterialModule } from './material.module';
+import { MessageDialogComponent } from './components/message-dialog/message-dialog.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RegisterComponent } from './components/register/register.component';
 import { RoleListViewComponent } from './components/role-list-view/role-list-view.component';
 import { ScenarioDetailComponent } from './components/scenario-detail/scenario-detail.component';
 import { ScenarioListViewComponent } from './components/scenario-list-view/scenario-list-view.component';
@@ -23,6 +24,7 @@ import { SceneContainerComponent } from './components/scene-container/scene-cont
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 import { UserSettingsEditComponent } from './components/user-settings-edit/user-settings-edit.component';
 import { TwoOptionsDialogComponent } from './components/two-options-dialog/two-options-dialog.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -35,13 +37,15 @@ import { TwoOptionsDialogComponent } from './components/two-options-dialog/two-o
     ScenarioListViewComponent,
     ExplanationViewComponent,
     LoginComponent,
-    RegisterComponent,
     RoleListViewComponent,
     ErrorMessageDialogComponent,
     UserSettingsComponent,
     UserSettingsEditComponent,
     PauseDialogComponent,
     TwoOptionsDialogComponent,
+    MessageDialogComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +61,7 @@ import { TwoOptionsDialogComponent } from './components/two-options-dialog/two-o
     ErrorMessageDialogComponent,
     PauseDialogComponent,
     TwoOptionsDialogComponent,
+    MessageDialogComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
