@@ -43,7 +43,6 @@ export class SceneContainerComponent implements OnInit {
         this.progress.role_id = this.roleId;
         this.progress.scene_id = this.currentScene.id;
         this.isNew = true;
-        console.log("new progress " + JSON.stringify(this.progress));
       } else {
         this.progress = progress[0];
         this.isNew = false;
