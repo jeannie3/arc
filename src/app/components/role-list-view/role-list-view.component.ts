@@ -72,4 +72,8 @@ export class RoleListViewComponent implements OnInit {
   chooseRole(role) {
     this.router.navigate([this.userId, 'roles', role.id, 'scenes', role.first_scene_id]);
   }
+
+  goToSettings(){
+    this.router.navigate(['/settings'])
+  }
 }
