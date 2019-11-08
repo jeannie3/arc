@@ -22,6 +22,9 @@ const routes: Routes = [
   { path: 'role', component: RoleListViewComponent},
   { path: 'settings', component: UserSettingsComponent},
   { path: 'settings/edit', component: UserSettingsEditComponent},
+  { path: ':userId/roles/:roleId/scenes/:sceneId', component: SceneContainerComponent },
+  { path: ':userId/roles/:roleId/explanation/:sceneId', component: ExplanationViewComponent },
+  { path: ':userId/roles', component: RoleListViewComponent },
   { path: '**', redirectTo: 'login' }
 ];
 

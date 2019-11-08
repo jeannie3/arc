@@ -21,6 +21,8 @@ import { SceneAnswerChoiceListComponent } from './components/scene-answer-choice
 import { SceneContainerComponent } from './components/scene-container/scene-container.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 import { UserSettingsEditComponent } from './components/user-settings-edit/user-settings-edit.component';
+import { TwoOptionsDialogComponent } from './components/two-options-dialog/two-options-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { UserSettingsEditComponent } from './components/user-settings-edit/user-
     RoleListViewComponent,
     ErrorMessageDialogComponent,
     UserSettingsComponent,
-    UserSettingsEditComponent
+    UserSettingsEditComponent,
+    TwoOptionsDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ import { UserSettingsEditComponent } from './components/user-settings-edit/user-
     HttpClientModule,
   ],
   entryComponents: [
-    ErrorMessageDialogComponent
+    ErrorMessageDialogComponent,
+    TwoOptionsDialogComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
