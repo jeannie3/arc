@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 import { AnswerChoice } from 'src/app/models/answer-choice';
 import { ScenarioService } from '../../services/scenario.service';
@@ -19,18 +19,6 @@ export class SceneContainerComponent implements OnInit {
   userId: string;
   progress: Progress;
   isNew: boolean;
-
-  // @HostListener('window:unload', ['$event'])
-  // unloadHandler(event) {
-  //   // ...
-  // }
-
-  @HostListener('window:beforeunload', ['$event'])
-  beforeUnloadHander(event) {
-    localStorage.setItem('closed', 'triggered')
-    alert("No no no");
-    event.preventDefault();
-  }
 
   updateScene(nextScene: string) {
     // if the next scene is -1, the current scene is the last scene
