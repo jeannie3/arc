@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorMessageDialogComponent } from './components/error-message-dialog/error-message-dialog.component';
+import { PauseDialogComponent } from './components/pause-dialog/pause-dialog.component';
 import { ExplanationViewComponent } from './components/explanation-view/explanation-view.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
@@ -34,6 +35,7 @@ import { TwoOptionsDialogComponent } from './components/two-options-dialog/two-o
     RegisterComponent,
     RoleListViewComponent,
     ErrorMessageDialogComponent,
+    PauseDialogComponent,
     TwoOptionsDialogComponent,
   ],
   imports: [
@@ -48,7 +50,8 @@ import { TwoOptionsDialogComponent } from './components/two-options-dialog/two-o
   ],
   entryComponents: [
     ErrorMessageDialogComponent,
-    TwoOptionsDialogComponent
+    PauseDialogComponent,
+    TwoOptionsDialogComponent,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
