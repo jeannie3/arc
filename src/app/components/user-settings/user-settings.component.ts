@@ -24,5 +24,9 @@ import { Router } from '@angular/router';
 
 	onEdit() {
 		this.router.navigate(['/settings/edit'])
-	}
+  }
+  
+  onReturn(){
+    this.router.navigate(['/role'])
+  }
 }
