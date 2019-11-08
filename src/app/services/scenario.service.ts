@@ -17,6 +17,12 @@ import { environment } from 'src/environments/environment';
 export class ScenarioService {
 
   private baseUrl = environment.baseUrl;
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+    })
+  };
 
   constructor(private http: HttpClient,
               private authService: AuthService) { }
@@ -69,5 +75,27 @@ export class ScenarioService {
     }).pipe(
       catchError(this.authService.handleError)
     );
+  }
+
+  saveProgress(progress: Progress, isNew: boolean): Observable<Progress[]> {
+    if (isNew) {
+      return this.http.post<Progress[]>(this.baseUrl + '/progress', progress, this.httpOptions)
+        .pipe(
+          catchError(this.authService.handleError)
+        );
+    } else {
+      return this.http.put<Progress[]>(this.baseUrl + '/progress?id=eq.' + progress.id, progress, this.httpOptions)
+        .pipe(
+          catchError(this.authService.handleError)
+        );
+    }
+  }
+
+  getProgress(userId: string, roleId: string): Observable<Progress[]> {
+    const filterQuery = '?and=(user_id.eq.' + userId + ',role_id.eq.' + roleId + ')';
+    return this.http.get<Progress[]>(this.baseUrl + '/progress' + filterQuery, this.httpOptions)
+      .pipe(
+        catchError(this.authService.handleError)
+      );
   }
 }

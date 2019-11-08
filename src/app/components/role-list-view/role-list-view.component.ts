@@ -16,6 +16,7 @@ export class RoleListViewComponent implements OnInit {
   scenarioTitle: string;
   scenarioDescription: string;
   formRoles: FormArray;
+  userId: any;
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
@@ -23,49 +24,52 @@ export class RoleListViewComponent implements OnInit {
               private dialog: MatDialog) { }
 
   ngOnInit() {
-    const userId = JSON.parse(localStorage.getItem('userInfo')).id;
-    this.scenarioService.getUncompletedProgress(userId).subscribe((progresses: Progress[]) => {
-      if (progresses.length > 0) {
-        const opt1 = 'Continue';
-        const opt2 = 'Cancel';
-        const dialogRef = this.dialog.open(TwoOptionsDialogComponent, {
-          data: {
-            title: 'Continue progress?',
-            content: 'We see that you have some progress made from the last time you visited. ' +
-                     'Would you like to continue?',
-            option1: opt1,
-            option2: opt2
-          }
-        });
-        document.getElementById('main-body').classList.add('blur');
+    this.userId = JSON.parse(localStorage.getItem('userInfo')).id;
 
-        dialogRef.afterClosed().subscribe((res) => {
-          if (res === opt1) {
-            const current = progresses[0];
-            this.router.navigate([current.role_id, 'scene', current.scene_id]);
-          }
-          document.getElementById('main-body').classList.remove('blur');
-        });
-      }
-    });
+    if (this.userId) {
+      this.scenarioService.getUncompletedProgress(this.userId).subscribe((progresses: Progress[]) => {
+        if (progresses.length > 0) {
+          const opt1 = 'Continue';
+          const opt2 = 'Cancel';
+          const dialogRef = this.dialog.open(TwoOptionsDialogComponent, {
+            data: {
+              title: 'Continue progress?',
+              content: 'We see that you have some progress made from the last time you visited. ' +
+                       'Would you like to continue?',
+              option1: opt1,
+              option2: opt2
+            }
+          });
+          document.getElementById('main-body').classList.add('blur');
+
+          dialogRef.afterClosed().subscribe((res) => {
+            if (res === opt1) {
+              const current = progresses[0];
+              this.router.navigate([this.userId, 'roles', current.role_id, 'scenes', current.scene_id]);
+            }
+            document.getElementById('main-body').classList.remove('blur');
+          });
+        }
+      });
+    }
 
     this.scenarioService.getScenario('1').subscribe( result =>{
       this.scenarioTitle = result[0].title;
       this.scenarioDescription = result[0].description;
     });
     this.formRoles = new FormArray([]);
-    this.scenarioService.getRoles('1').subscribe( roles => {
+    this.scenarioService.getRoles('1').subscribe(roles => {
       roles.forEach(role => {
         this.formRoles.push(this.formBuilder.group({
-            id: role.id,
-            name: role.name,
-            first_scene_id: role.first_scene_id
+          id: role.id,
+          name: role.name,
+          first_scene_id: role.first_scene_id
         }));
       });
     });
   }
 
   chooseRole(role) {
-      this.router.navigate([role.id, 'scene', role.first_scene_id]);
+    this.router.navigate([this.userId, 'roles', role.id, 'scenes', role.first_scene_id]);
   }
 }
