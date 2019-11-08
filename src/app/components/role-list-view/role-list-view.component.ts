@@ -3,6 +3,7 @@ import { FormArray, FormBuilder } from '@angular/forms';
 
 import { Router } from '@angular/router';
 import { ScenarioService } from '../../services/scenario.service';
+import { Progress } from 'src/app/models/progress';
 
 @Component({
   selector: 'app-role-list-view',
@@ -13,9 +14,18 @@ export class RoleListViewComponent implements OnInit {
   scenarioTitle: string;
   scenarioDescription: string;
   formRoles: FormArray;
+  userId: string;
+  progress: Progress[];
 
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private scenarioService: ScenarioService) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private scenarioService: ScenarioService) { 
+    const userId = JSON.parse(localStorage.getItem('userInfo')).id;
+    this.userId = userId;
+    this.scenarioService.getUserProgress(this.userId).subscribe(progress => {
+      this.progress = progress;
+      //console.log(progress);
+    });
+  }
 
   ngOnInit() {
     this.scenarioService.getScenario('1').subscribe(result => {
@@ -28,7 +38,8 @@ export class RoleListViewComponent implements OnInit {
         this.formRoles.push(this.formBuilder.group({
           id: role.id,
           name: role.name,
-          first_scene_id: role.first_scene_id
+          first_scene_id: role.first_scene_id,
+          is_completed: this.isRoleCompleted(role.id) ? true : false
         }));
       });
     });
@@ -36,8 +47,14 @@ export class RoleListViewComponent implements OnInit {
 
 
   chooseRole(role) {
-    const userId = JSON.parse(localStorage.getItem('userInfo')).id;
-    this.router.navigate([userId, 'roles', role.id, 'scenes', role.first_scene_id]);
+    this.router.navigate([this.userId, 'roles', role.id, 'scenes', role.first_scene_id]);
+  }
+
+  isRoleCompleted(roleId) {
+    // does the given role exist and is marked completed
+    return this.progress.some(function(p) {
+      return p.id == roleId && p.is_completed;
+    });
   }
 
 }

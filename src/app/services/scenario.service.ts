@@ -88,4 +88,12 @@ export class ScenarioService {
         catchError(this.authService.handleError)
       )
   }
+
+  getUserProgress(userId: string): Observable<Progress[]> {
+    const filterQuery = '?and=(user_id.eq.' + userId + ')';
+    return this.http.get<Progress[]>(this.baseUrl + '/progress' + filterQuery, this.httpOptions)
+      .pipe(
+        catchError(this.authService.handleError)
+      )
+  }
 }
