@@ -20,6 +20,7 @@ import { ScenarioListViewComponent } from './components/scenario-list-view/scena
 import { ScenarioSceneContextComponent } from './components/scenario-scene-context/scenario-scene-context.component';
 import { SceneAnswerChoiceListComponent } from './components/scene-answer-choice-list/scene-answer-choice-list.component';
 import { SceneContainerComponent } from './components/scene-container/scene-container.component';
+import { TwoOptionsDialogComponent } from './components/two-options-dialog/two-options-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { SceneContainerComponent } from './components/scene-container/scene-cont
     RoleListViewComponent,
     ErrorMessageDialogComponent,
     PauseDialogComponent,
+    TwoOptionsDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { SceneContainerComponent } from './components/scene-container/scene-cont
   ],
   entryComponents: [
     ErrorMessageDialogComponent,
-    PauseDialogComponent
+    PauseDialogComponent,
+    TwoOptionsDialogComponent,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

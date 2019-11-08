@@ -1,0 +1,10 @@
+<div class="center-content">
+    <h1 mat-dialog-title>{{data.title}}</h1>
+</div>
+<div mat-dialog-content>
+  {{data.content}}
+</div>
+<div mat-dialog-actions class="center-content">
+  <button mat-button [mat-dialog-close]="data.option2">{{data.option2}}</button>
+  <button mat-flat-button color="primary" [mat-dialog-close]="data.option1">{{data.option1}}</button>
+</div>
