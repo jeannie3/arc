@@ -1,9 +1,11 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 import { AnswerChoice } from 'src/app/models/answer-choice';
 import { ScenarioService } from '../../services/scenario.service';
 import { Scene, SceneType } from '../../models/scene';
+import { PauseDialogComponent } from '..//pause-dialog/pause-dialog.component';
 import { Progress } from 'src/app/models/progress';
 
 @Component({
@@ -44,8 +46,14 @@ export class SceneContainerComponent implements OnInit {
       });
     });
   }
+  
+  onPause(){
+    let dialogRef = this.dialog.open(PauseDialogComponent,{data: {
+          roleId: this.roleId
+        }});
+  }
 
-  constructor(private router: Router, private scenarioService: ScenarioService, private _Activatedroute: ActivatedRoute) {
+  constructor(private dialog: MatDialog, private router: Router, private scenarioService: ScenarioService, private _Activatedroute: ActivatedRoute) {
     this._Activatedroute.paramMap.subscribe(params => {
       this.userId = params.get('userId');
       this.roleId = params.get('roleId');
