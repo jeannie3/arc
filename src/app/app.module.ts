@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorMessageDialogComponent } from './components/error-message-dialog/error-message-dialog.component';
 import { PauseDialogComponent } from './components/pause-dialog/pause-dialog.component';
 import { ExplanationViewComponent } from './components/explanation-view/explanation-view.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
@@ -38,7 +37,6 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     ExplanationViewComponent,
     LoginComponent,
     RoleListViewComponent,
-    ErrorMessageDialogComponent,
     UserSettingsComponent,
     UserSettingsEditComponent,
     PauseDialogComponent,
@@ -58,7 +56,6 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     HttpClientModule,
   ],
   entryComponents: [
-    ErrorMessageDialogComponent,
     PauseDialogComponent,
     TwoOptionsDialogComponent,
     MessageDialogComponent
