@@ -23,7 +23,6 @@ export class RoleListViewComponent implements OnInit {
     this.userId = userId;
     this.scenarioService.getUserProgress(this.userId).subscribe(progress => {
       this.progress = progress;
-      //console.log(progress);
     });
   }
 
