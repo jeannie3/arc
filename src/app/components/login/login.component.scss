@@ -6,7 +6,15 @@
 }
 
 body {
-    background-color: azure
+    background-color:  #d3d3d3
+}
+
+.mat-card-container {
+    display: flex;
+}
+
+mat-divider {
+    margin: 30px;
 }
 
 .flex-col {
@@ -17,7 +25,23 @@ body {
 .action-buttons {
     button {
         margin: 10px;
+        float: left;
     }
+}
+
+
+.forgot-password-container {
+     button{
+       margin-top:5px;
+       margin-left:10px;
+       float:left;
+     }
+     a{
+       text-decoration: none;
+       color: white;
+     }
+    position: absolute;
+    bottom: 175px;
 }
 
 .mat-form-field {

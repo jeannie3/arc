@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
 
+import { MatDialog } from '@angular/material/dialog';
+import { Progress } from 'src/app/models/progress';
 import { Router } from '@angular/router';
 import { ScenarioService } from '../../services/scenario.service';
-import { Progress } from 'src/app/models/progress';
+import { TwoOptionsDialogComponent } from '../two-options-dialog/two-options-dialog.component';
 
 @Component({
   selector: 'app-role-list-view',
@@ -18,7 +20,10 @@ export class RoleListViewComponent implements OnInit {
   progress: Progress[];
 
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private scenarioService: ScenarioService) { 
+  constructor(private router: Router, 
+              private formBuilder: FormBuilder, 
+              private scenarioService: ScenarioService, 
+              private dialog: MatDialog) { 
     const userId = JSON.parse(localStorage.getItem('userInfo')).id;
     this.userId = userId;
     this.scenarioService.getUserProgress(this.userId).subscribe(progress => {
@@ -27,7 +32,36 @@ export class RoleListViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.scenarioService.getScenario('1').subscribe(result => {
+    this.userId = JSON.parse(localStorage.getItem('userInfo')).id;
+
+    if (this.userId) {
+      this.scenarioService.getUncompletedProgress(this.userId).subscribe((progresses: Progress[]) => {
+        if (progresses.length > 0) {
+          const opt1 = 'Continue';
+          const opt2 = 'Cancel';
+          const dialogRef = this.dialog.open(TwoOptionsDialogComponent, {
+            data: {
+              title: 'Continue progress?',
+              content: 'We see that you have some progress made from the last time you visited. ' +
+                       'Would you like to continue?',
+              option1: opt1,
+              option2: opt2
+            }
+          });
+          document.getElementById('main-body').classList.add('blur');
+
+          dialogRef.afterClosed().subscribe((res) => {
+            if (res === opt1) {
+              const current = progresses[0];
+              this.router.navigate([this.userId, 'roles', current.role_id, 'scenes', current.scene_id]);
+            }
+            document.getElementById('main-body').classList.remove('blur');
+          });
+        }
+      });
+    }
+
+    this.scenarioService.getScenario('1').subscribe( result =>{
       this.scenarioTitle = result[0].title;
       this.scenarioDescription = result[0].description;
     });
@@ -56,4 +90,7 @@ export class RoleListViewComponent implements OnInit {
     });
   }
 
+  goToSettings(){
+    this.router.navigate(['/settings'])
+  }
 }

@@ -4,10 +4,10 @@ import { AnswerChoice } from '../models/answer-choice';
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Progress } from '../models/progress';
 import { Role } from '../models/role';
 import { Scenario } from '../models/scenario';
 import { Scene } from '../models/scene';
-import { Progress } from '../models/progress';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
@@ -67,17 +67,27 @@ export class ScenarioService {
     );
   }
 
+  getUncompletedProgress(userId: string): Observable<Progress[]> {
+    return this.http.get<Progress[]>(this.baseUrl + '/progress?and=(user_id.eq.' + userId + ',is_completed.eq.false)', {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+      })
+    }).pipe(
+      catchError(this.authService.handleError)
+    );
+  }
+
   saveProgress(progress: Progress, isNew: boolean): Observable<Progress[]> {
     if (isNew) {
       return this.http.post<Progress[]>(this.baseUrl + '/progress', progress, this.httpOptions)
         .pipe(
           catchError(this.authService.handleError)
-        )
+        );
     } else {
       return this.http.put<Progress[]>(this.baseUrl + '/progress?id=eq.' + progress.id, progress, this.httpOptions)
         .pipe(
           catchError(this.authService.handleError)
-        )
+        );
     }
   }
 
@@ -86,7 +96,7 @@ export class ScenarioService {
     return this.http.get<Progress[]>(this.baseUrl + '/progress' + filterQuery, this.httpOptions)
       .pipe(
         catchError(this.authService.handleError)
-      )
+      );
   }
 
   getUserProgress(userId: string): Observable<Progress[]> {

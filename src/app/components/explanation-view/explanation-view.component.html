@@ -6,14 +6,14 @@
     <mat-step label="Explanation">
       <div>{{ currentScene.description }}</div>
       <div>
-        <button mat-raised-button color="primary" matStepperNext>Next</button>
+        <button mat-raised-button color="primary" id="next1" matStepperNext>Next</button>
       </div>
     </mat-step>
     <mat-step label="Achievements">
       <div><p>Woo, you earned random award!!</p></div>
       <div>
-        <button mat-raised-button color="primary" matStepperPrevious>Back</button>
-        <button mat-raised-button color="primary" matStepperNext>Next</button>
+        <button mat-raised-button color="primary" id="back1" matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" id="next2" matStepperNext>Next</button>
       </div>
     </mat-step>
     <mat-step label="Continue">
@@ -21,10 +21,10 @@
         <p>Continue Training</p>
       </div>
       <div>
-          <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" id="back2" matStepperPrevious>Back</button>
           <div *ngIf="success; then thenBlock else elseBlock"></div>
-          <ng-template #thenBlock><button color="primary" mat-raised-button matStepperNext (click)="goToRoles()">Try different role</button></ng-template>
-          <ng-template #elseBlock><button color="primary" mat-raised-button matStepperNext (click)="tryAgain()">Try again</button></ng-template>
+          <ng-template #thenBlock><button color="primary" id="gotry" mat-raised-button matStepperNext (click)="goToRoles()">Try different role</button></ng-template>
+          <ng-template #elseBlock><button color="primary" id="gotry" mat-raised-button matStepperNext (click)="tryAgain()">Try again</button></ng-template>
       </div>
     </mat-step>
   </mat-horizontal-stepper>

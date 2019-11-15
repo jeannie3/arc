@@ -1,8 +1,11 @@
 <div class="hflex-container">
     <div class="picBox">
-        <img *ngIf="currentScene.image_link !== null" [src]="currentScene.image_link" alt="This is the image that is displayed in the scene." class="fit">
+        <img *ngIf="currentScene?.image_link !== null" [src]="currentScene.image_link" alt="This is the image that is displayed in the scene." class="fit">
     </div>
     <div class = "vflex-container">
+        <button class="absTopRight" mat-icon-button (click)="onPause()">
+        <mat-icon>pause</mat-icon>
+        </button>
         <div class="descBox">
            <app-scenario-scene-context [scene]="currentScene"></app-scenario-scene-context>
         </div>
