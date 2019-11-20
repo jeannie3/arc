@@ -1,6 +1,6 @@
 # Arc
 
-## Setup
+## Pre-Requisites
 
 This app requires you to have:
 
@@ -8,16 +8,22 @@ This app requires you to have:
     * To check your version, run `node -v` in a terminal/console window.
     * To get Node.js, go to nodejs.org
 * npm
-    * To check version, run `npm -v` in a terminal/console window.
+    * To check if you have npm installed, run `npm -v` in a terminal/console window.
     * Should be installed with Node.js by default
 * Angular CLI
     * To get Angular CLI, run `npm install -g @angular/cli` in a terminal/console window.
 
-## To download dependencies 
+## Download
 
-Run `npm install` to download the dependencies necessary to run this app. You will only need to do this once unless the dependencies have been updated.
+To clone our repository, run `git clone https://github.com/jeannie3/arc.git` in a terminal/console window.
 
-## Development server (To run Web App)
+Alternatively, you can download our zip file above by clicking on the clone or download button on the github page.
+
+## Dependenices
+
+Run `npm install` in the root folder (arc) to download the dependencies necessary to run this app. You will only need to do this once unless the dependencies have been updated.
+
+## Development server (To run application)
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. Another command that works is `npm start`.
 
