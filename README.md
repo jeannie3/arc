@@ -8,7 +8,7 @@ NEW FEATURES
 	The UI across the application is now consistent
 	Roles are now grayed out after they have been completed
 BUGS
-	Background does not always extend the entire to the page
+	Background of the webpage does not always extend to the entire page
 	App asks you if you would like to continue your progress even if you just exited from a scene (redundant)
 BUG FIXES
 	No bug fixes for current release
