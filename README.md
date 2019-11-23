@@ -2,15 +2,15 @@
 
 ## Release Notes version Cultural Humility Simulator 4.0
 
-NEW FEATURES
+* NEW FEATURES
     * Users are now able to save their progress and continue where they left off in a scenario
     * Users can now access the settings page where they can view their email
     * The UI across the application is now consistent
     * Roles are now grayed out after they have been completed
-BUGS
+* BUGS
     * Background of the webpage does not always extend to the entire page
     * App asks you if you would like to continue your progress even if you just exited from a scene (redundant)
-BUG FIXES
+* BUG FIXES
     * No bug fixes for current release
 
 ## Pre-Requisites
