@@ -1,5 +1,18 @@
 # Arc
 
+## Release Notes version Cultural Humility Simulator 4.0
+
+NEW FEATURES
+	Users are now able to save their progress and continue where they left off in a scenario
+	Users can now access the settings page where they can view their email
+	The UI across the application is now consistent
+	Roles are now grayed out after they have been completed
+BUGS
+	Background does not always extend the entire to the page
+	App asks you if you would like to continue your progress even if you just exited from a scene (redundant)
+BUG FIXES
+	No bug fixes for current release
+
 ## Pre-Requisites
 
 This app requires you to have:
