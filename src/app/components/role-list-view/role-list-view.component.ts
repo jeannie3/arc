@@ -20,10 +20,10 @@ export class RoleListViewComponent implements OnInit {
   progress: Progress[];
 
 
-  constructor(private router: Router, 
-              private formBuilder: FormBuilder, 
-              private scenarioService: ScenarioService, 
-              private dialog: MatDialog) { 
+  constructor(private router: Router,
+              private formBuilder: FormBuilder,
+              private scenarioService: ScenarioService,
+              private dialog: MatDialog) {
     const userId = JSON.parse(localStorage.getItem('userInfo')).id;
     this.userId = userId;
     this.scenarioService.getUserProgress(this.userId).subscribe(progress => {
@@ -86,7 +86,7 @@ export class RoleListViewComponent implements OnInit {
   isRoleCompleted(roleId) {
     // does the given role exist and is marked completed
     return this.progress.some(function(p) {
-      return p.id == roleId && p.is_completed;
+      return p.role_id === roleId && p.is_completed;
     });
   }
 
