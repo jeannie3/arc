@@ -62,12 +62,12 @@ export class RoleListViewComponent implements OnInit {
     }
 
     this.scenarioService.getAllScenarios().subscribe(scenerios => {
+      // Randomly picking scenario
       this.scenarioId = '' + Math.floor(Math.random() * scenerios.length);
       this.scenarioTitle = scenerios[this.scenarioId].title;
       this.scenarioDescription = scenerios[this.scenarioId].description;
-      console.log(this.scenarioId)
-      console.log(scenerios)
 
+      // Getting roles in scenario
       this.formRoles = new FormArray([]);
       this.scenarioService.getRoles(this.scenarioId).subscribe(roles => {
         roles.forEach(role => {

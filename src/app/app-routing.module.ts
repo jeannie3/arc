@@ -7,16 +7,13 @@ import { NgModule } from '@angular/core';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { RoleListViewComponent } from './components/role-list-view/role-list-view.component';
 import { SceneContainerComponent } from './components/scene-container/scene-container.component';
-import { UserSettingsEditComponent } from './components/user-settings-edit/user-settings-edit.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
-
+import { UserSettingsEditComponent } from './components/user-settings-edit/user-settings-edit.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'login/forgotpassword', component: ForgotPasswordComponent },
   { path: 'resetpassword', component: ResetPasswordComponent },
-
-
   // { path: '', component: ScenarioListViewComponent },
   // { path: 'scenario/:id', component: ScenarioDetailComponent },
   { path: ':roleId/scene/:sceneId', component: SceneContainerComponent },

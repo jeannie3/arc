@@ -1,18 +1,22 @@
-body{
+body {
   background-color:#f3f3f3;
-  height:100%;
+  height: 100%;
+  width: 100%;
+  position: absolute;
 }
-h1{
-  text-align: center;
-}
-p{
-  text-align:center;
-}
-.change{
+
+h1 {
   text-align: center;
 }
 
-.return{
-  padding-top:10px;
-  text-align:center;
+p {
+  text-align: center;
+}
+.change {
+  text-align: center;
+}
+
+.return {
+  padding-top: 10px;
+  text-align: center;
 }

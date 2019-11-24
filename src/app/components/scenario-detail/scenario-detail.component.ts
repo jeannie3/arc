@@ -49,16 +49,11 @@ export class ScenarioDetailComponent {
     }
 
   onSave() {
-    console.log(this.formGroup.value);
     localStorage.setItem(this.scenario.id.toString(), JSON.stringify(this.formGroup.value));
     this.router.navigate(['/']);
   }
 
   onCancel() {
     this.router.navigate(['/']);
-  }
-
-  testScenario() {
-    console.log('test scenario here');
   }
 }
