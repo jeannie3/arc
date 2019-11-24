@@ -5,6 +5,7 @@ import { Scene, SceneType } from '../../models/scene';
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { ScenarioService } from 'src/app/services/scenario.service';
+import { Progress } from 'src/app/models/progress';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class ExplanationViewComponent implements OnInit {
   success: boolean;
   firstSceneId: string;
   userId: string
+  progress: Progress;
 
   constructor(private router: Router, private _Activatedroute: ActivatedRoute, private scenarioService: ScenarioService) {
     this._Activatedroute.paramMap.subscribe(params => {
@@ -30,6 +32,13 @@ export class ExplanationViewComponent implements OnInit {
         this.currentScene = scenes.find(scene => scene.id == this.sceneId);
         if (this.currentScene.type == SceneType.FB_POSITIVE) {
           this.success = true;
+          // mark a role as completed if we have reached positive feedback
+          this.scenarioService.getProgress(this.userId, this.roleId).subscribe(progress => {
+            this.progress = progress[0];
+            this.progress.is_completed = true;
+            this.scenarioService.saveProgress(this.progress, false).subscribe(success => {
+            });
+          });
         } else {
           this.success = false;
         }

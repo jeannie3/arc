@@ -5,9 +5,10 @@
 <p class="veryIsolated">{{scenarioDescription}}</p>
 <div class = "isolatedBlueBox">
 <div class = "isolatedWhite" *ngFor="let role of formRoles.controls">
-<button mat-raised-button (click)="chooseRole(role.value)" id="roles">
-    {{role.get('name').value}}
-</button>
+    <button mat-raised-button [ngClass]="role.value.is_completed ? 'grayClass' : 'whiteClass'" (click)="chooseRole(role.value)">
+            {{role.get('name').value}}
+    </button>
+        
 </div>
 </div>
 <div class = "settings">

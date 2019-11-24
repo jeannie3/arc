@@ -21,12 +21,12 @@ export class LoginComponent implements OnInit {
     emailErrorMatcher: EmailErrorStateMatcher;
     passwordErrorMatcher: PasswordErrorStateMatcher;
 
-    constructor(
-        private formBuilder: FormBuilder,
-        private router: Router,
-        private authenticationService: AuthService
-    ) {
-    }
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authenticationService: AuthService
+  ) {
+  }
 
   ngOnInit() {
     const emailRegexValidator = '[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+';
