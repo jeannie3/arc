@@ -13,12 +13,12 @@ import { TwoOptionsDialogComponent } from '../two-options-dialog/two-options-dia
   styleUrls: ['./role-list-view.component.scss']
 })
 export class RoleListViewComponent implements OnInit {
+  scenarioId: string;
   scenarioTitle: string;
   scenarioDescription: string;
   formRoles: FormArray;
   userId: string;
   progress: Progress[];
-
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
@@ -61,19 +61,23 @@ export class RoleListViewComponent implements OnInit {
       });
     }
 
-    this.scenarioService.getScenario('1').subscribe( result =>{
-      this.scenarioTitle = result[0].title;
-      this.scenarioDescription = result[0].description;
-    });
-    this.formRoles = new FormArray([]);
-    this.scenarioService.getRoles('1').subscribe(roles => {
-      roles.forEach(role => {
-        this.formRoles.push(this.formBuilder.group({
-          id: role.id,
-          name: role.name,
-          first_scene_id: role.first_scene_id,
-          is_completed: this.isRoleCompleted(role.id) ? true : false
-        }));
+    this.scenarioService.getAllScenarios().subscribe(scenerios => {
+      this.scenarioId = '' + Math.floor(Math.random() * scenerios.length);
+      this.scenarioTitle = scenerios[this.scenarioId].title;
+      this.scenarioDescription = scenerios[this.scenarioId].description;
+      console.log(this.scenarioId)
+      console.log(scenerios)
+
+      this.formRoles = new FormArray([]);
+      this.scenarioService.getRoles(this.scenarioId).subscribe(roles => {
+        roles.forEach(role => {
+          this.formRoles.push(this.formBuilder.group({
+            id: role.id,
+            name: role.name,
+            first_scene_id: role.first_scene_id,
+            is_completed: this.isRoleCompleted(role.id) ? true : false
+          }));
+        });
       });
     });
   }
