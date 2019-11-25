@@ -16,14 +16,13 @@ const routes: Routes = [
   { path: 'resetpassword', component: ResetPasswordComponent },
   // { path: '', component: ScenarioListViewComponent },
   // { path: 'scenario/:id', component: ScenarioDetailComponent },
-  { path: ':roleId/scene/:sceneId', component: SceneContainerComponent },
-  { path: ':roleId/explanation/:sceneId', component: ExplanationViewComponent},
+  // { path: ':roleId/scenario/:scenarioId/scene/:sceneId', component: SceneContainerComponent },
+  // { path: ':roleId/scenario/:scenarioId/explanation/:sceneId', component: ExplanationViewComponent},
   { path: 'role', component: RoleListViewComponent},
   { path: 'settings', component: UserSettingsComponent},
   { path: 'settings/edit', component: UserSettingsEditComponent},
-  { path: ':userId/roles/:roleId/scenes/:sceneId', component: SceneContainerComponent },
-  { path: ':userId/roles/:roleId/explanation/:sceneId', component: ExplanationViewComponent },
-  { path: ':userId/roles', component: RoleListViewComponent },
+  { path: ':userId/roles/:roleId/scenario/:scenarioId/scenes/:sceneId', component: SceneContainerComponent },
+  { path: ':userId/roles/:roleId/scenario/:scenarioId/explanation/:sceneId', component: ExplanationViewComponent },
   { path: '**', redirectTo: 'login' }
 ];
 

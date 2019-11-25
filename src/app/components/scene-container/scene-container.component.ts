@@ -19,6 +19,7 @@ export class SceneContainerComponent implements OnInit {
   allScenesForRole: Scene[];
   roleId: string;
   userId: string;
+  scenarioId: string;
   progress: Progress;
   isNew: boolean;
 
@@ -29,13 +30,14 @@ export class SceneContainerComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(params => {
       this.userId = params.get('userId');
       this.roleId = params.get('roleId');
-      this.scenarioService = scenarioService;
-      scenarioService.getScenes(this.roleId).subscribe(scenes => {
-        this.allScenesForRole = scenes;
-        const firstSceneId = params.get('sceneId');
-        this.currentScene = this.allScenesForRole.find(scene => +scene.id === +firstSceneId);
+      this.scenarioId = params.get('scenarioId');
+      const sceneId = params.get('sceneId');
 
-        scenarioService.getAnswerChoices(this.currentScene.id).subscribe(answers => {
+      this.scenarioService.getScenes(this.roleId).subscribe(scenes => {
+        this.allScenesForRole = scenes;
+        this.currentScene = this.allScenesForRole.find(scene => +scene.id === +sceneId);
+
+        this.scenarioService.getAnswerChoices(this.currentScene.id).subscribe(answers => {
           this.answerChoices = answers;
         });
       });
@@ -63,18 +65,25 @@ export class SceneContainerComponent implements OnInit {
       }
       this.scenarioService.saveProgress(this.progress, this.isNew).subscribe(success => {
         if (this.currentScene.type === SceneType.FB_POSITIVE || this.currentScene.type === SceneType.FB_NEGATIVE) {
-          this.router.navigate([this.userId + '/roles/' + this.roleId + '/explanation/' + nextScene]);
+          this.router.navigate([this.userId, 'roles', this.roleId, 'scenario', this.scenarioId, 'explanation', nextScene]);
         } else {
-          this.router.navigate([this.userId + '/roles/' + this.roleId + '/scenes/' + nextScene]);
+          this.router.navigate([this.userId, 'roles', this.roleId, 'scenario', this.scenarioId, 'scenes', nextScene]);
         }
       });
     });
   }
 
   onPause() {
-    this.dialog.open(PauseDialogComponent, {
-      data: {
-        roleId: this.roleId
+    const dialogRef = this.dialog.open(PauseDialogComponent);
+
+    dialogRef.afterClosed().subscribe(res => {
+      if (res === 'restart') {
+        this.scenarioService.getRoles(this.scenarioId).subscribe(roles => {
+          const role = roles.find(r => +r.id === +this.roleId);
+          this.router.navigate([this.userId, 'roles', this.roleId, 'scenario', this.scenarioId, 'scenes', role.first_scene_id]);
+        });
+      } else if (res === 'exit') {
+        this.router.navigate(['/role']);
       }
     });
   }

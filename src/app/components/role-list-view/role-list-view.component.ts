@@ -77,14 +77,14 @@ export class RoleListViewComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res === opt1) {
-        this.router.navigate([this.userId, 'roles', progress.role_id, 'scenes', progress.scene_id]);
+        this.router.navigate([this.userId, 'roles', progress.role_id, 'scenario', this.scenarioId, 'scenes', progress.scene_id]);
       }
       document.getElementById('main-body').classList.remove('blur');
     });
   }
 
   chooseRole(role) {
-    this.router.navigate([this.userId, 'roles', role.id, 'scenes', role.first_scene_id]);
+    this.router.navigate([this.userId, 'roles', role.id, 'scenario', this.scenarioId, 'scenes', role.first_scene_id]);
   }
 
   isRoleCompleted(roleId) {
