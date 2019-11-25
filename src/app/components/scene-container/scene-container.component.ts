@@ -46,15 +46,19 @@ export class SceneContainerComponent implements OnInit {
     // if the next scene is -1, the current scene is the last scene
     this.currentScene = this.allScenesForRole.find(scene => scene.id === nextScene);
 
-    this.scenarioService.getProgress(this.userId, this.roleId).subscribe(progress => {
+    this.scenarioService.getUncompletedProgress(this.userId).subscribe(progress => {
       if (progress.length === 0) {
+        // creates new progress
         this.progress = new Progress();
         this.progress.user_id = this.userId;
         this.progress.role_id = this.roleId;
         this.progress.scene_id = this.currentScene.id;
         this.isNew = true;
       } else {
+        // update old progress role id and scene id
         this.progress = progress[0];
+        this.progress.role_id = this.roleId;
+        this.progress.scene_id = this.currentScene.id;
         this.isNew = false;
       }
       this.scenarioService.saveProgress(this.progress, this.isNew).subscribe(success => {
