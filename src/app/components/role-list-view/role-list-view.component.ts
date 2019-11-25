@@ -4,6 +4,7 @@ import { FormArray, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Progress } from 'src/app/models/progress';
 import { Router } from '@angular/router';
+import { Scenario } from 'src/app/models/scenario';
 import { ScenarioService } from '../../services/scenario.service';
 import { TwoOptionsDialogComponent } from '../two-options-dialog/two-options-dialog.component';
 
@@ -19,13 +20,14 @@ export class RoleListViewComponent implements OnInit {
   formRoles: FormArray;
   userId: string;
   progress: Progress[];
+  loading: boolean;
+  scenarios: Scenario[];
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
               private scenarioService: ScenarioService,
               private dialog: MatDialog) {
     this.userId = JSON.parse(localStorage.getItem('userInfo')).id;
-    this.formRoles = new FormArray([]);
     this.scenarioService.getUserProgress(this.userId).subscribe(progress => {
       this.progress = progress;
     });
@@ -40,25 +42,34 @@ export class RoleListViewComponent implements OnInit {
         }
       });
 
-      this.scenarioService.getAllScenarios().subscribe(scenerios => {
-        // Randomly pick scenario
-        this.scenarioId = '' + Math.floor(Math.random() * scenerios.length);
-        this.scenarioTitle = scenerios[this.scenarioId].title;
-        this.scenarioDescription = scenerios[this.scenarioId].description;
-
-        // Getting roles in scenario
-        this.scenarioService.getRoles(this.scenarioId).subscribe(roles => {
-          roles.forEach(role => {
-            this.formRoles.push(this.formBuilder.group({
-              id: role.id,
-              name: role.name,
-              first_scene_id: role.first_scene_id,
-              is_completed: this.isRoleCompleted(role.id) ? true : false
-            }));
-          });
-        });
+      this.scenarioService.getAllScenarios().subscribe(scenarios => {
+        this.scenarios = scenarios;
+        this.loadScenario();
       });
     }
+  }
+
+  loadScenario() {
+    this.loading = true;
+    this.formRoles = new FormArray([]);
+
+    // Randomly pick scenario
+    this.scenarioId = '' + Math.floor(Math.random() * this.scenarios.length);
+    this.scenarioTitle = this.scenarios[this.scenarioId].title;
+    this.scenarioDescription = this.scenarios[this.scenarioId].description;
+
+    // Getting roles in scenario
+    this.scenarioService.getRoles(this.scenarioId).subscribe(roles => {
+      roles.forEach(role => {
+        this.formRoles.push(this.formBuilder.group({
+          id: role.id,
+          name: role.name,
+          first_scene_id: role.first_scene_id,
+          is_completed: this.isRoleCompleted(role.id) ? true : false
+        }));
+      });
+      this.loading = false;
+    });
   }
 
   openProgressDialog(progress) {

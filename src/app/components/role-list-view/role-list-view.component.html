@@ -1,19 +1,25 @@
 <body>
-<div class ="isolated">
-<h1 class="bigText">{{scenarioTitle}}</h1>
-</div>
-<p class="veryIsolated">{{scenarioDescription}}</p>
-<div class="rolesContainer">
-    <div class="roles" *ngFor="let role of formRoles?.controls">
-        <button mat-raised-button color="primary" [ngClass]="role.value.is_completed ? 'grayClass' : 'whiteClass'" (click)="chooseRole(role.value)">
-            {{role.get('name').value}}
+    <div class ="isolated">
+        <h1 class="bigText">{{scenarioTitle}}</h1>
+    </div>
+    <p class="veryIsolated">{{scenarioDescription}}</p>
+    <div class="rolesContainer" *ngIf="!loading">
+        <div class="roles" *ngFor="let role of formRoles?.controls">
+            <button mat-raised-button color="primary" [ngClass]="role.value.is_completed ? 'grayClass' : 'whiteClass'" (click)="chooseRole(role.value)">
+                {{role.get('name').value}}
+            </button>
+        </div>
+        <div *ngIf="formRoles?.length === 0">There are no roles for this scenario.</div>
+    </div>
+    <div *ngIf="loading">
+        <mat-spinner class="center"></mat-spinner>
+    </div>
+    <div class="settings">
+        <button class="settingsButton" mat-icon-button matTooltip="Change scenario" (click)="loadScenario()">
+            <mat-icon>refresh</mat-icon>
+        </button>
+        <button class="settingsButton" mat-icon-button matTooltip="Go to user settings" (click)="goToSettings()">
+            <mat-icon>settings</mat-icon>
         </button>
     </div>
-    <div *ngIf="formRoles?.length === 0">There are no roles for this scenario.</div>
-</div>
-<div class="settings">
-    <button class="settingsButton" mat-icon-button (click)="goToSettings()">
-        <mat-icon>settings</mat-icon>
-    </button>
-</div>
 </body>
