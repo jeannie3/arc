@@ -9,6 +9,7 @@
             {{role.get('name').value}}
         </button>
     </div>
+    <div *ngIf="formRoles?.length === 0">There are no roles for this scenario.</div>
 </div>
 <div class="settings">
     <button class="settingsButton" mat-icon-button (click)="goToSettings()">

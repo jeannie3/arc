@@ -2,7 +2,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Scene, SceneType } from '../../models/scene';
 
-import { MatStepperModule } from '@angular/material/stepper';
 import { Progress } from 'src/app/models/progress';
 import { ScenarioService } from 'src/app/services/scenario.service';
 
@@ -23,11 +22,11 @@ export class ExplanationViewComponent implements OnInit {
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private scenarioService: ScenarioService) {
     this.activatedRoute.paramMap.subscribe(params => {
-      this.userId = params.get('userId')
+      this.userId = params.get('userId');
       this.sceneId = params.get('sceneId');
       this.roleId = params.get('roleId');
       scenarioService.getScenes(this.roleId).subscribe(scenes => {
-        this.currentScene = scenes.find(scene => scene.id === this.sceneId);
+        this.currentScene = scenes.find(scene => +scene.id === +this.sceneId);
         if (this.currentScene.type === SceneType.FB_POSITIVE) {
           this.success = true;
           // mark a role as completed if we have reached positive feedback

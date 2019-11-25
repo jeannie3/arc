@@ -24,6 +24,6 @@ import { Router } from '@angular/router';
     }
 
     onReturn() {
-      this.router.navigate(['/role'])
+      this.router.navigate(['/role']);
     }
 }

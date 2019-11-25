@@ -52,6 +52,11 @@ body {
     height: 100%
 }
 
+.full-width .vflex-container {
+    width: 90%;
+    margin: auto;
+}
+
 .pause-button {
     position: absolute;
     top: 10px;
