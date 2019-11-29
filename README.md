@@ -8,10 +8,11 @@
     * The UI across the application is now consistent
     * Roles are now grayed out after they have been completed
 * BUGS
-    * Background of the webpage does not always extend to the entire page
-    * App asks you if you would like to continue your progress even if you just exited from a scene (redundant)
+    * No known bugs
 * BUG FIXES
-    * No bug fixes for current release
+    * Background of the webpage always extends to the entire page
+    * App no longer asks you if you would like to continue your progress even if you just exited from a scene
+    * App no longer asks you if you would like to continue your progress after you completed a scenario
 
 ## Pre-Requisites
 
