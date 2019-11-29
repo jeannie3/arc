@@ -25,7 +25,17 @@ export class ScenarioService {
   };
 
   constructor(private http: HttpClient,
-    private authService: AuthService) { }
+              private authService: AuthService) { }
+
+  getAllScenarios(): Observable<Scenario[]> {
+    return this.http.get<Scenario[]>(this.baseUrl + '/scenarios', {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+      })
+    }).pipe(
+      catchError(this.authService.handleError)
+    );
+  }
 
   getScenario(scenarioId: string): Observable<Scenario> {
     return this.http.get<Scenario>(this.baseUrl + '/scenarios?id=eq.' + scenarioId, {
@@ -104,6 +114,6 @@ export class ScenarioService {
     return this.http.get<Progress[]>(this.baseUrl + '/progress' + filterQuery, this.httpOptions)
       .pipe(
         catchError(this.authService.handleError)
-      )
+      );
   }
 }

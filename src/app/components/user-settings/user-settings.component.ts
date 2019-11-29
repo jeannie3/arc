@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgModule } from '@angular/core';
-
 
 import { Router } from '@angular/router';
 
@@ -10,23 +8,22 @@ import { Router } from '@angular/router';
     styleUrls: ['./user-settings.component.scss']
   })
   export class UserSettingsComponent implements OnInit {
-    email:string
-    
-  
-    constructor(private router: Router) {	
+    email: string;
+
+    constructor(private router: Router) {
       const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-      this.email = userInfo.email
-	}
+      this.email = userInfo.email;
+    }
 
-	ngOnInit() {
-    
-	}
+    ngOnInit() {
 
-	onEdit() {
-		this.router.navigate(['/settings/edit'])
-  }
-  
-  onReturn(){
-    this.router.navigate(['/role'])
-  }
+    }
+
+    onEdit() {
+      // this.router.navigate(['/settings/edit'])
+    }
+
+    onReturn() {
+      this.router.navigate(['/role']);
+    }
 }

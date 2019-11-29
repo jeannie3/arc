@@ -1,16 +1,19 @@
-<div class="hflex-container">
-    <div class="picBox">
-        <img *ngIf="currentScene?.image_link !== null" [src]="currentScene.image_link" alt="This is the image that is displayed in the scene." class="fit">
-    </div>
-    <div class = "vflex-container">
-        <button class="absTopRight" mat-icon-button (click)="onPause()">
-        <mat-icon>pause</mat-icon>
-        </button>
-        <div class="descBox">
-           <app-scenario-scene-context [scene]="currentScene"></app-scenario-scene-context>
+<body>
+    <div [ngClass]="currentScene?.image_link !== null? 'hflex-container' : 'full-width'">
+        <div class="picBox" *ngIf="currentScene?.image_link !== null">
+            <img class="fit" [src]="currentScene.image_link" alt="This is the image that is displayed in the scene.">
         </div>
-        <div class="ansBox">
-        <app-scene-answer-choice-list [answerChoices]="answerChoices" (answered)="updateScene($event)"></app-scene-answer-choice-list>
+        <div class="vflex-container">
+            <button class="pause-button" mat-icon-button (click)="onPause()">
+                <mat-icon>pause</mat-icon>
+            </button>
+            <div class="descBox">
+            <app-scenario-scene-context [scene]="currentScene"></app-scenario-scene-context>
+            </div>
+            <div class="ansBox">
+                <app-scene-answer-choice-list [answerChoices]="answerChoices" (answered)="updateScene($event)"></app-scene-answer-choice-list>
+            </div>
         </div>
     </div>
-</div>
+</body>
+
