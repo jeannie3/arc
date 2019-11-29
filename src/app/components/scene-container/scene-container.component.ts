@@ -83,7 +83,7 @@ export class SceneContainerComponent implements OnInit {
           this.router.navigate([this.userId, 'roles', this.roleId, 'scenario', this.scenarioId, 'scenes', role.first_scene_id]);
         });
       } else if (res === 'exit') {
-        this.router.navigate(['/role']);
+        this.router.navigate(['/role', 'exit']);
       }
     });
   }

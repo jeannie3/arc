@@ -1,9 +1,9 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
 
 import { MatDialog } from '@angular/material/dialog';
 import { Progress } from 'src/app/models/progress';
-import { Router } from '@angular/router';
 import { Scenario } from 'src/app/models/scenario';
 import { ScenarioService } from '../../services/scenario.service';
 import { TwoOptionsDialogComponent } from '../two-options-dialog/two-options-dialog.component';
@@ -20,13 +20,18 @@ export class RoleListViewComponent implements OnInit {
   formRoles: FormArray;
   userId: string;
   progress: Progress[];
+  exit: string;
   loading: boolean;
   scenarios: Scenario[];
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
               private scenarioService: ScenarioService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.exit = params.get('exit');
+    });
     this.userId = JSON.parse(localStorage.getItem('userInfo')).id;
     this.scenarioService.getUserProgress(this.userId).subscribe(progress => {
       this.progress = progress;
@@ -37,7 +42,7 @@ export class RoleListViewComponent implements OnInit {
     if (this.userId) {
       // Checks to see if there are any uncompleted progresses
       this.scenarioService.getUncompletedProgress(this.userId).subscribe((progresses: Progress[]) => {
-        if (progresses.length > 0) {
+        if (progresses.length > 0 && !this.exit) {
           this.openProgressDialog(progresses[0]);
         }
       });

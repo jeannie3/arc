@@ -19,6 +19,7 @@ const routes: Routes = [
   // { path: ':roleId/scenario/:scenarioId/scene/:sceneId', component: SceneContainerComponent },
   // { path: ':roleId/scenario/:scenarioId/explanation/:sceneId', component: ExplanationViewComponent},
   { path: 'role', component: RoleListViewComponent},
+  { path: 'role/:exit', component: RoleListViewComponent},
   { path: 'settings', component: UserSettingsComponent},
   { path: 'settings/edit', component: UserSettingsEditComponent},
   { path: ':userId/roles/:roleId/scenario/:scenarioId/scenes/:sceneId', component: SceneContainerComponent },

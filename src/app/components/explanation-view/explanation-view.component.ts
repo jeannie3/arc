@@ -32,7 +32,7 @@ export class ExplanationViewComponent implements OnInit {
         if (this.currentScene.type === SceneType.FB_POSITIVE) {
           this.success = true;
           // mark a role as completed if we have reached positive feedback
-          this.scenarioService.getProgress(this.userId, this.roleId).subscribe(progress => {
+          this.scenarioService.getUncompletedProgress(this.userId).subscribe(progress => {
             this.progress = progress[0];
             this.progress.is_completed = true;
             this.scenarioService.saveProgress(this.progress, false).subscribe();
