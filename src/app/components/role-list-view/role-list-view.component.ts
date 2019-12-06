@@ -15,6 +15,7 @@ import { TwoOptionsDialogComponent } from '../two-options-dialog/two-options-dia
 })
 export class RoleListViewComponent implements OnInit {
   scenarioId: string;
+  scenarioIndex: number;
   scenarioTitle: string;
   scenarioDescription: string;
   formRoles: FormArray;
@@ -59,9 +60,10 @@ export class RoleListViewComponent implements OnInit {
     this.formRoles = new FormArray([]);
 
     // Randomly pick scenario
-    this.scenarioId = '' + Math.floor(Math.random() * this.scenarios.length);
-    this.scenarioTitle = this.scenarios[this.scenarioId].title;
-    this.scenarioDescription = this.scenarios[this.scenarioId].description;
+    this.scenarioIndex = Math.floor(Math.random() * this.scenarios.length);
+    this.scenarioTitle = this.scenarios[this.scenarioIndex].title;
+    this.scenarioDescription = this.scenarios[this.scenarioIndex].description;
+    this.scenarioId = this.scenarios[this.scenarioIndex].id;
 
     // Getting roles in scenario
     this.scenarioService.getRoles(this.scenarioId).subscribe(roles => {
